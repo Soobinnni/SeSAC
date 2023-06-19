@@ -46,16 +46,15 @@ print(odd_numbers)
 
 # 이 목록에서 90점 이상인 학생을 출력
 student_grades = {
-    "John" :85 ,
+    "John" : 85,
     "Emily" : 92,
     "Michael" : 78,
     "Sophia" : 95
 }
 for student, grade in student_grades.items():
     print(student, grade)
-###########################################해결 못한 문제######################################
 for student, grade in student_grades.items():
-    if(grade>=90):
+    if grade>=90:
         print(student, grade)
 
                
@@ -68,8 +67,8 @@ student = {
     "age" : 26,
     "university" : "ABC uni"
 }
-print("Name : ", student[name])
-print("Age : ", student[age]) 
+print("Name : ", student['name'])
+print("Age : ", student['age']) 
 
 print("삭제 후 리스트 : ",shopping_list)
 
