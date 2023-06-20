@@ -1,0 +1,24 @@
+sentence = "Hello, world"
+
+def count_char(input_char):
+    count = 0
+    for char in sentence:
+        if char == input_char:
+            count += 1
+    return count
+   
+char = 'o'
+count = count_char(char)
+print(f'대소문자 구별 : 글자 {char} 갯수 : {count}')
+
+#대소문자를 구별하지 않고 글자 세기 : 모두 소문자화하여 비교
+def count_char_2(input_char):
+    count = 0
+    for char in sentence.lower():
+        if char == input_char.lower():
+            count += 1
+    return count
+   
+char = 'h'
+count_2 = count_char_2(char)
+print(f'대소문자 구별하지 않음 : 글자 {char} 갯수 : {count_2}')
