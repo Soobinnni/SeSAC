@@ -41,6 +41,6 @@ def shuffle():
     return my_new_list
 
 print("원본 리스트 : ", my_list)
-random.shuffle(my_list) # 복제본이 아니라 원본을 섞기 때문에 random.shuffle 후 원본이 뒤섞여 있다.
+random.shuffle(my_list) # 복제본이 아니라 원본을 섞기 때문에 random.shuffle 후 원본이 뒤섞여 있다. 즉 반환 값이 없음
 print("섞인 리스트 : ", my_list)
 
