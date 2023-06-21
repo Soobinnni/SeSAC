@@ -31,9 +31,12 @@ def generate_gender():
 
 def generate_birthdate(birth):
     date = None
-    year = int(random.choice(birth["year"]))
-    month = int(random.choice(birth["month"]))
-    day = int(random.choice(birth["day"]))
+    # year = int(random.choice(birth["year"]))
+    year = random.randint(1950, 2023)
+    # month = int(random.choice(birth["month"]))
+    month = random.randint(1, 12)
+    # day = int(random.choice(birth["day"]))
+    day = random.randint(1, 31)
 
     try:
         date = datetime.datetime(year, month, day)
