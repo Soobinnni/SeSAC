@@ -1,4 +1,11 @@
-name,age,city
-john,25,seoul
-bill,20,busan
-kim,22,seoul
+Name,Gender,Birthdate,Age,Address
+James,female,1958-08-26,66,47 Montreal
+Isaiah,male,1980-05-20,44,14 Manila
+Scarlett,female,1969-10-07,55,24 Hanoi
+Harper,male,2002-10-21,22,30 Toronto
+Zoe,female,1981-10-24,43,14 Istanbul
+Julian,female,1995-01-26,29,2 Houston
+Owen,female,1973-07-25,51,5 Tokyo
+Josiah,male,1992-07-15,32,49 Istanbul
+Scarlett,male,1968-11-02,56,27 Brasília
+Mia,female,1960-02-25,64,25 Singapore

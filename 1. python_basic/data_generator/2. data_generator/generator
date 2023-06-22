@@ -55,9 +55,6 @@ class NameGenerator:
 #   소스코드를 변경하지 않고 데이터 파일 (예, names.txt, cities.txt) 을 읽어 이름/주소를 동적으로 증가하시오.
 
 def generate_individual_info():
-    names = ['John', 'Jane', 'Michael', 'Emily', 'William', 'Olivia']
-    cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Philadelphia']
-
     name_instance = NameGenerator()
     address_instance = AddressGenerator()
     gender_instance = GenderGenerator()
