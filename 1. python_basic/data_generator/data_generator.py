@@ -19,7 +19,7 @@ def generate_birthdate():
     try:
         date = datetime.datetime(year, month, day)
     except ValueError:
-         generate_birthdate(birth)
+         generate_birthdate()
     birth = date.strftime('%Y-%m-%d') #날짜 포맷
     return birth
 

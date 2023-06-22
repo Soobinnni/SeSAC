@@ -1,0 +1,98 @@
+import random
+import datetime
+
+class AddressGenerator:
+    def __init__(self):
+        self.cities = []
+    
+    def generate_address(self):
+        address_num = random.randint(1,50)
+        city_name = random.choice(self.cities)
+        adresss = str(address_num) + ' ' +city_name
+        return adresss
+    
+
+class AgeGenerator:
+    def __init__(self):
+        self.current_year = datetime.datetime.now().year
+        self.birthdate_year = 0
+
+    def get_age(self):
+        return self.current_year - self.birthdate_year + 1
+    
+
+class BirthdateGenerator:
+    def generate_birthdate(self):
+        while True:
+            year = random.randint(1950, 2023)
+            month = random.randint(1, 12)
+            day = random.randint(1, 31)
+
+            try:
+                date = datetime.datetime(year, month, day)
+                birth = date.strftime('%Y-%m-%d')  # 날짜 포맷
+                return birth
+            except ValueError:
+                continue
+
+class GenderGenerator:
+    #생성자
+    def __init__(self):
+      self.genders = ['female', 'male']
+
+    def generate_gender(self):
+        return random.choice(self.genders)
+    
+class NameGenerator:
+    def __init__(self):
+            self.names = []
+      
+    def generate_name(self):
+        return random.choice(self.names)
+
+# 미션 2
+# - M2. 사람의 이름을 더 늘리려면? 주소를 더 늘리려면?
+#   소스코드를 변경하지 않고 데이터 파일 (예, names.txt, cities.txt) 을 읽어 이름/주소를 동적으로 증가하시오.
+
+def generate_individual_info():
+    names = ['John', 'Jane', 'Michael', 'Emily', 'William', 'Olivia']
+    cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Philadelphia']
+
+    name_instance = NameGenerator()
+    address_instance = AddressGenerator()
+    gender_instance = GenderGenerator()
+    birth_instance = BirthdateGenerator()
+    age_instance = AgeGenerator()
+
+    birth = birth_instance.generate_birthdate()
+    gender = gender_instance.generate_gender()
+    with open("names.txt", "r") as name_file: #mode - r(read), w(write), a(append)
+        name_instance.names =  name_file.read().strip().split(',')
+    
+    name = name_instance.generate_name()
+    
+    with open("cities.txt", "r") as city_file: #mode - r(read), w(write), a(append)
+        address_instance.cities =  city_file.read().strip().split(',')
+    
+    address = address_instance.generate_address()
+
+    age_instance.birthdate_year = int(birth[0:4])
+    age = age_instance.get_age()
+    
+    individual_info = (name, gender, birth, age, address)
+    result = ', '.join(str(value) for value in individual_info)
+    return result
+
+def main():
+    data_list = []
+
+    print('Name, Birthdate, Gender, Address')
+    for _ in range(10):
+        data_list.append(generate_individual_info())
+
+    for d in data_list:
+        print(d)
+
+
+if __name__ == "__main__":
+    main()
