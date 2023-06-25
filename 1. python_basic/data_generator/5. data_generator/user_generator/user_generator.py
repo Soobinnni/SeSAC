@@ -1,4 +1,4 @@
-from  import Generator
+from generator import Generator
 
 from address_generator import AddressGenerator
 from age_generator import AgeGenerator

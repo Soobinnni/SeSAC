@@ -4,8 +4,7 @@ class AddressGenerator:
         self.usa_cities = []
         self.korea_cities = []
         self.korea_gus = []
-
-    
+  
     def generate_korea_address(self):
         city_name = random.choice(self.korea_cities)
         gu_name = random.choice(self.korea_gus)

@@ -1,6 +1,8 @@
 from user_generator import UserInfoGenerator
 
 def main():
+    # TODO : 반복문 고치기
+    
     user_info_generator = UserInfoGenerator()
     # 출력할 정보 개수 입력
     data_num = user_info_generator.input_data_num()

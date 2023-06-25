@@ -1,9 +1,6 @@
 import csv
 
 class Generator:
-    # - M5. 생성하는 개수를 동적으로 입력받고, 원하는 출력 타입 (console, csv) 에 따라 결과물을 출력하시오.
-    #   이름을 한국 이름으로 (성/이름), 그리고 주소도 한국 도로명 주소 형태로 생성하시오.
-    #   객체지향 설계를 하여, 신규 타입이(상점 등) 추가 될때 확장성 있게 설계하시오. (상속을 통해 필수 generate 함수를 구현하도록..)     
     def file_to_list(self, file_name):
         result = None
         with open(file_name, "r", encoding='utf-8') as file: #mode - r(read), w(write), a(append)
@@ -22,6 +19,7 @@ class Generator:
                 continue
         return data_num
 
+    # TODO : 함수 고치기(list받기)
     def mk_individual_info(self, num):
         data_list = [
             {

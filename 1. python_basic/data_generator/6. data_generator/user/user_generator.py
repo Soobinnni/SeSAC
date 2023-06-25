@@ -1,12 +1,12 @@
-from  import Generator
+from generator import Generator
 
-from address_generator import AddressGenerator
-from age_generator import AgeGenerator
-from birthdate_generator import BirthdateGenerator
-from gender_generator import GenderGenerator
-from name_generator import NameGenerator
+from common.address_generator import AddressGenerator
+from user.age_generator import AgeGenerator
+from user.birthdate_generator import BirthdateGenerator
+from user.gender_generator import GenderGenerator
+from user.name_generator import NameGenerator
 
-class UserInfoGenerator(Generator):
+class UserGenerator(Generator):
     def mk_name(self):
         name_instance = NameGenerator()
         name_instance.korean_first_names = self.file_to_list("korean_first_names.txt")
@@ -43,20 +43,22 @@ class UserInfoGenerator(Generator):
 
         return address
 
-    def generate_individual_info(self):
+    def generate_info(self):
         individual_info_dic = {
+            "id" : None,
             "name" : None,
             "gender" : None,
             "birthdate" : None,
             "age" : None,
             "address" : None
         }       
+
+        individual_info_dic['id'] = self.mk_uuid()
         individual_info_dic['name'] = self.mk_name()
         individual_info_dic['gender'] = self.mk_gender()
-        birthdate = self.mk_birthdate()
-        individual_info_dic['birthdate'] = birthdate
+        # birthdate
+        individual_info_dic['birthdate'] = birthdate = self.mk_birthdate()
         individual_info_dic['age'] = self.mk_age(birthdate)
         individual_info_dic['address'] = self.mk_address()
 
         return individual_info_dic
-    
