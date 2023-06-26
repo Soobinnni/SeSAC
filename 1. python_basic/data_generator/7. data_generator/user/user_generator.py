@@ -16,8 +16,8 @@ class UserGenerator(Generator):
         self.address_instance = AddressGenerator()
 
     def mk_name(self):
-        self.name_instance.korean_first_names = FileReader().file_to_list("korean_first_names.txt")
-        self.name_instance.korean_last_names = FileReader().file_to_list("korean_last_names.txt")  
+        self.name_instance.korean_first_names = FileReader().file_to_list("extra_files/korean_first_names.txt")
+        self.name_instance.korean_last_names = FileReader().file_to_list("extra_files/korean_last_names.txt")  
         name = self.name_instance.generate_korean_name()
 
         return name
@@ -40,8 +40,8 @@ class UserGenerator(Generator):
 
 
     def mk_address(self):
-        self.address_instance.korea_cities = FileReader().file_to_list("korea_cities.txt")    
-        self.address_instance.korea_gus = FileReader().file_to_list("korea_gus.txt")      
+        self.address_instance.korea_cities = FileReader().file_to_list("extra_files/korea_cities.txt")    
+        self.address_instance.korea_gus = FileReader().file_to_list("extra_files/korea_gus.txt")      
         address = self.address_instance.generate_korea_address()
 
         return address

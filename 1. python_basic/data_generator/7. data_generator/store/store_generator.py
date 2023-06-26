@@ -32,8 +32,8 @@ class StoreGenerator(Generator):
 
     def mk_store_address_list(self, num):
         address_instance = AddressGenerator()
-        address_instance.korea_cities = FileReader().file_to_list("korea_cities.txt")    
-        address_instance.korea_gus = FileReader().file_to_list("korea_gus.txt")      
+        address_instance.korea_cities = FileReader().file_to_list("extra_files/korea_cities.txt")    
+        address_instance.korea_gus = FileReader().file_to_list("extra_files/korea_gus.txt")      
         address_list = address_instance.generate_korea_address_list(num)
 
         return address_list
