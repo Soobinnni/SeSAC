@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+    <meta charset="utf-8">
+    <title>
+        form
+    </title>
+</head>
+<body>
+    <h1>입력폼들 만들어보기</h1>
+    <label for="input">아이디</label>
+    <input id="input" type="text" placeholder="입력하시오." size="20" maxlength="20"/><br>
+    <br><hr>
+    <label for="pwd">비밀번호</label>
+    <input id="pwd" type="password" placeholder="입력하시오." size="20" maxlength="20"/><br>
+    <hr><label for="num">숫자만 입력</label>
+    <input type="number">
+    <hr>
+    <input type="button" value="버튼"/>
+    <hr>
+    <h1>라디오</h1>
+    <input type="radio" name="subject"/>국어
+    <input type="radio" name="subject"/>영어
+    <input type="radio" name="subject"/>수학
+    <hr>
+    <h1>선택</h1>
+    <input type="checkbox" name="choice">선택1
+    <input type="checkbox" name="choice">선택2
+    <input type="checkbox" name="choice">선택
+    <select size="3" multiple>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select><br><br>
+    <br><progress value="60" max="100"></progress>
+</body>
+</html>
