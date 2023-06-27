@@ -9,6 +9,28 @@
         .sat {
             color : blue
         }
+        table {
+            width: 500px;
+            height : 300px;
+        }
+        table, td, th {
+            border : 1px solid rgb(109, 100, 100);
+            border-collapse: collapse;
+        }
+        th {
+            background-color: rgb(226, 225, 225);
+            height: 10%;
+        }
+        td {
+            height : 18%;
+            text-align: center;
+        }
+        td.today span {
+            background-color: black;
+            padding: 4px 6px;
+            color: white;
+            border-radius: 100px;
+        }
     </style>
     <title>
 
@@ -16,8 +38,17 @@
 </head>
 <body>
     <h1>달력</h1>
-    <table border="3px" width="500px" height="500px" align="center">
-        <caption><span style="font-size:40px;font-weight: 800;">6월</span></caption>
+    <table align="center">
+        <colgroup>
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+          </colgroup>
+        <caption><span style="padding-bottom:20px;font-size:35px;font-weight: 800;">6월</span></caption>
         <tr>
             <th class="sun">일</th>
             <th>월</th>
@@ -28,7 +59,10 @@
             <th class="sat">토</th>
         </tr>
         <tr>
-            <td colspan="4"></td>
+            <td class="sun"></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>1</td>
             <td>2</td>
             <td class="sat">3</td>
@@ -63,7 +97,7 @@
         <tr>
             <td class="sun">25</td>
             <td>26</td>
-            <td>27</td>
+            <td class="today"><span>27</span></td>
             <td>28</td>
             <td>29</td>
             <td>30</td>

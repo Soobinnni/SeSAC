@@ -1,0 +1,38 @@
+/*root*/
+* {
+    box-sizing: inherit;
+}
+html, body, root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+div {
+    display: block;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: currentColor;
+}
+h5 {
+    font-weight: 700;
+    font-size : 1.25em;
+    margin : 0
+}
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+.has-text-centered {
+    text-align: center;
+}
+/* 상단 배너 */
+.top_banner {
+    width: 100%;
+    margin: 0;
+}
+.top_banner, .top_banner a {
+    background-color: #00c471;
+    color: white;
+}

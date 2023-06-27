@@ -1,0 +1,17 @@
+/* p {
+    display: inline-block;
+    width: 200px;
+    border : 1px solid red;
+} */
+#yong1 {
+    float: left;
+}
+#yong2 {
+    float: right;
+}
+.container {
+    border : 3px solid red;
+}
+p {
+    clear : right
+}
