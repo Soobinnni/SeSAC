@@ -1,0 +1,23 @@
+div {
+    width: 100px;
+    height: 100px;
+    color: white;
+    position : relative;
+    font-weight: 800;
+}
+.div1 {
+    background-color: orange;
+}
+.div2 {
+    background-color: red;
+    bottom : 50px;
+}
+.div3 {
+    background-color: blue;
+    bottom : 100px;
+}
+.div4 {
+    background-color: yellow;
+    bottom : 150px;
+    color: black;
+}

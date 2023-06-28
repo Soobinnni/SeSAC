@@ -1,0 +1,12 @@
+.h-container, item {
+    float : left;
+    width: 100px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+}
+.h-container, item.last{
+    float : left;
+    width: 100px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+}

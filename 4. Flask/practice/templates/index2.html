@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+    <meta charset="utf-8">
+    <title>
+        나의 웹 사이트~
+    </title>
+</head>
+<body>
+    <h1>플라스크 홈페이지 입니다.</h1>
+    <!-- Jinja2 Template문법으로 코딩 -->
+    {% for user in username %}
+        {% if user  == 'admin' %}
+        <p>안녕하세요, 관리자님</p>
+        {% else %}
+        <p>안녕하세요, {{user}}님</p>
+        {% endif %}
+    {% endfor %}
+    <h2>{{asdf}}</h2>
+</body>
+</html>

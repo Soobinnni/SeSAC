@@ -1,0 +1,7 @@
+p {
+    width: 400px;
+    height: 200px;
+    border: 5px solid red;
+    overflow: hidden scroll;
+    /* 넘치는 컨텐츠를 숨길 것인지, 스크롤할 것인지, 넘치도록 할 것인지 속성을 정함 */
+}

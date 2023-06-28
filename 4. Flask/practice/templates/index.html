@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+    <meta charset="utf-8">
+    <title>
+        나의 웹 사이트~
+    </title>
+    <style>
+        body div{
+            border: 1px solid black;
+        }
+        .container{
+            width: 1080px;
+            margin : 50px auto;
+        }
+        .clear {
+            clear: both;
+            border-style: none;
+        }
+        /* 헤더 */
+        .menu {
+            width : 5%;
+            float:left;
+            text-align: center;
+        }
+        .login_services {
+            border-style: none;
+            width : 40%;
+            float:right
+        }
+        .login_service {
+            width: 30%;
+            text-align: center;
+            float: right;
+            margin : 0 5px;
+        }
+        .search_bar {
+            position: relative;
+            top:40px;
+            margin : 100px auto 20px;
+            width : 500px;
+            height: 35px;
+        }
+        .search_bar input{
+            width: 90%;
+            height: 60%;
+            border-style: none;
+            text-align: center;
+            font-weight: 800;
+            font-size: 23px;
+        }
+        .shortcuts {
+            border-style: none;
+            width: 800px;
+            margin : 50px auto 20px;
+        }
+        .shortcuts_blocks {
+            border-style: none;
+            width: 500px;
+            height: 50px;
+            margin : 20px auto 5px;
+        }
+        .block {
+            float: left;
+            width : 23%;
+            height : 20px;
+            margin : 1.5px 3.5px;
+            text-align: center;
+        }
+        .boards {
+            border-style: none;
+            width: 700px;
+            margin : 30px auto 20px;
+            text-align: center;
+        }
+        .board {
+            width: 90%;
+            margin: 5px auto;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="menu">메뉴</div>
+            <div class="login_services">
+                <div class="login_service"><a href="login.html">로그인</a></div>
+                <div class="login_service">회원가입</div>
+            </div>
+        </header>
+        <div class="clear"></div>
+        <div style="background-color: green;">
+            <div></div>
+            <div class="search_bar" style="background-color: white;">
+                <input type="text" placeholder="검색어 입력"/>
+            </div>
+        </div>
+        <div class="shortcuts">
+            <p align="center" style="font-size: 20px;">바로가기 메뉴</p>
+            <div class="shortcuts_blocks">
+                <div class="shortcuts_block">
+                    <div class="block">1</div>
+                    <div class="block">2</div>
+                    <div class="block">3</div>
+                    <div class="block">4</div>
+                </div>
+                <div class="clear"></div>
+                <div class="shortcuts_block">
+                    <div class="block">5</div>
+                    <div class="block">6</div>
+                    <div class="block">7</div>
+                    <div class="block">8</div>
+                </div>
+            </div>
+        </div>
+        <div class="boards">
+            <div class="board"><a href="yongu.html">김용구 게시글</a></div>
+            <div class="board">게시글 2</div>
+            <div class="board">게시글 3</div>
+            <div class="board">게시글 4</div>
+            <div class="board">게시글 5</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+    <meta charset="utf-8">
+    <title>
+        쇼핑몰~
+    </title>
+</head>
+<body>
+    <h1>00 쇼핑몰</h1>
+    {% if len(user_info) != 0 %}
+        <h2>{{ user_info['id'] }}님 안녕하세요!</h2>
+        <a href="/">쇼핑하러 가기</a>
+    {% else %}
+        <h2>로그인 하기</h2>
+        <a href="/"></a>
+    {% endif %}
+</body>
+</html>
