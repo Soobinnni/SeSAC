@@ -8,12 +8,14 @@
 </head>
 <body>
     <h1>00 쇼핑몰</h1>
-    {% if len(user_info) != 0 %}
+    {% if user_info %}
         <h2>{{ user_info['id'] }}님 안녕하세요!</h2>
         <a href="/">쇼핑하러 가기</a>
     {% else %}
         <h2>로그인 하기</h2>
-        <a href="/"></a>
+        <a href="/loginform">ㅁㄴㅇㅎ론허오ㅡ,</a>
     {% endif %}
+    <h2>{{ user_info['id'] }}님 안녕하세요!</h2>
+    <a href="/">쇼핑하러 가기</a>
 </body>
 </html>

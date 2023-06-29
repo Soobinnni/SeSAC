@@ -5,11 +5,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    users = []
-    return render_template("hello3.html", users=users)
-
-@app.route("/read-user")
-def read_csv():
     user_list = []
     with open("user.csv", "r", encoding="utf-8") as file:
         csv_reader = csv.reader(file)
@@ -17,7 +12,7 @@ def read_csv():
         for row in csv_reader:
             user_list.append(row)
 
-    return render_template("hello3.html", user_info = user_list)
+    return render_template("main.html", user_info = user_list)
 
 @app.route("/user/detail/<user_id>")
 def user_detail(user_id):
@@ -28,8 +23,14 @@ def user_detail(user_id):
         for row in reader:
             if user_id in row :
                 user_info = row
-    return render_template("detail.html", user_info = user_info)
+    # 딕셔너리 형태로 csv파일 담기
+    # with open('user.csv', 'r', encoding="utf-8") as file:
+    #         csv_data = csv.DictReader(file)
+    #         for data in csv_data:
+    #             print(data) 
+    
+    return render_template("user/detail.html", user_info = user_info)
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5002)
