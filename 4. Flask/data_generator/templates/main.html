@@ -9,26 +9,19 @@
 <body>
     <h1>플라스크 홈페이지 입니다.</h1>
     <!-- Jinja2 Template문법으로 코딩 -->
+    {% set header = data[0] %}
     <table border="1">
-        <!-- <caption>사용자 정보 출력</caption>
         <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Gender</td>
-            <td>Age</td>
-            <td>Birthdate</td>
-            <td>Address</td>
-        </tr> -->
-        {% for user in user_info %}
-            {% set url = "/user/detail/"+user[0]%}
-            <tr>
-                <td><a href="{{url}}">{{user[0]}}</a></td>
-                <td>{{user[1]}}</td>
-                <td>{{user[2]}}</td>
-                <td>{{user[3]}}</td>
-                <td>{{user[4]}}</td>
-                <td>{{user[5]}}</td>
-            </tr>
+        {% for key, value in header.items() %}
+            <td>{{key}}</td>
+        {% endfor %}
+        </tr>
+        {% for row in data %}
+        <tr>
+            {% for value in row.values() %}
+                <td>{{value}}</td>
+            {% endfor%}
+            </tr>   
         {% endfor %}
     </table>
 </body>
