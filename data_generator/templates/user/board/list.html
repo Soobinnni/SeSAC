@@ -90,7 +90,6 @@
             padding : 5px;
         }
         .board_content table td {
-            background-color: var(--bs-white);
             padding : 13px;
             text-align: center;
             border-bottom: 1px solid var(--bs-gray-300);
@@ -145,14 +144,16 @@
         .board_paging li {
             list-style-type: none;
         }
-        .board_paging ul li a:hover {
+        .board_paging ul li a:hover, .current_page {
             color : var(--bs-orange);
             font-weight: 600;
             font-size: 1.2em;
         }
 
         tbody tr:hover {
-            background-color: black;
+            color: var(--bs-orange);
+            font-weight: 700;
+            background-color: var(--bs-gray-200);
             cursor: pointer;
         }
     </style>
@@ -207,7 +208,8 @@
                                     {% endfor %}
                                 </tr>
                                     {% for page_data in page_datas %}
-                                    <tr>
+                                    {% set id = page_data['Id'] %}
+                                    <tr onclick = window.location.href="{{ url_for('user_board_detail', id=id) }}">
                                         {% for key, value in page_data.items() %}
                                             {% if key != "Id" %}
                                                 <td>{{value}}</td>
@@ -228,7 +230,11 @@
                                 {% set max = min + ( size - 1 )  %}
                                 {% set total_page = total_page %}
                                 {% for i in range( 0, total_page)%}
-                                <li><a href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
+                                    {% if i == page_num %}
+                                    <li><a class="current_page" href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
+                                    {% else %}
+                                    <li><a href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
+                                    {% endif %}
                                 {%endfor%}
                                 <li><a href="#">▶</a></li>
                             </ul>
