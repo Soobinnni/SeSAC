@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+    <meta charset="utf-8">
+    <title>
+        나의 웹 사이트~
+    </title>
+</head>
+<body>
+    <h1>플라스크 홈페이지 입니다.</h1>
+    <!-- Jinja2 Template문법으로 코딩 -->
+    {% set header = data[0] %}
+    <table border="1">
+        <tr>
+        {% for key, value in header.items() %}
+            <td>{{key}}</td>
+        {% endfor %}
+        </tr>
+        {% for row in data %}
+        <tr>
+            {% for value in row.values() %}
+                <td>{{value}}</td>
+            {% endfor%}
+            </tr>   
+        {% endfor %}
+    </table>
+</body>
+</html>

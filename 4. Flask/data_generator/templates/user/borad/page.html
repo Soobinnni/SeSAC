@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --bs-blue: #0d6efd;
+            --bs-indigo: #6610f2;
+            --bs-purple: #6f42c1;
+            --bs-pink: #d63384;
+            --bs-red: #dc3545;
+            --bs-orange: #fd7e14;
+            --bs-yellow: #ffc107;
+            --bs-green: #198754;
+            --bs-teal: #20c997;
+            --bs-cyan: #0dcaf0;
+            --bs-white: #fff;
+            --bs-gray: #868e96;
+            --bs-gray-dark: #343a40;
+            --bs-gray-100: #f1f3f5;
+            --bs-gray-200: #e9ecef;
+            --bs-gray-300: #dee2e6;
+            --bs-gray-400: #ced4da;
+            --bs-gray-500: #adb5bd;
+            --bs-gray-600: #868e96;
+            --bs-gray-700: #495057;
+            --bs-gray-800: #343a40;
+            --bs-gray-900: #212529;
+            --bs-primary: #00c471;
+            --bs-secondary: #343a40;
+            --bs-success: #198754;
+            --bs-info: #0d6efd;
+            --bs-warning: #ffc107;
+            --bs-danger: #dc3545;
+            --bs-light: #f1f3f5;
+            --bs-dark: #212529;
+            --bs-body-bg: #fff;
+        }
+        html, body {
+            width: 100%;
+        }
+        a {
+            text-decoration: none;
+            color : inherit;
+        }
+        li {
+            list-style: none;
+        }
+        nav.nav ul{ 
+            margin : 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            padding: 1.5% 10%;
+        }
+        .border {
+            border-bottom: 3px solid var(--bs-warning);
+        }
+        nav.nav ul li {
+            margin-right : 5%;
+        }
+        nav.nav {
+            background-color: var(--bs-dark);
+            color : var(--bs-white);
+            font-weight : 800;       
+            cursor: pointer;
+        }
+        nav.nav li:hover {
+            color : var(--bs-gray-400)
+        }
+        div.search_bar {
+            margin-bottom : 2%;
+        }
+        main#main {
+            width: 80%;
+            margin : 0 auto;
+        }
+        .board_name {
+            font-weight: 800;letter-spacing: -1px;
+        }
+        .board_content table {
+            width:100%;
+            margin-top : 30px;
+            border-collapse : collapse;
+        }
+        .board_content table th {
+            background-color: var(--bs-yellow);
+            padding : 5px;
+        }
+        .board_content table td {
+            background-color: var(--bs-white);
+            padding : 13px;
+            text-align: center;
+            border-bottom: 1px solid var(--bs-gray-300);
+        }
+        .search_bar form label {
+            font-size: 1.2em;
+            font-weight: 600;
+            color : var(--bs-gray-600)
+        }
+        .search_bar form input+.space {
+            margin : 0 10px;
+            display: inline-block;
+        }
+        .search_bar form select+.space {
+            margin : 0 5px;
+            display: inline-block;
+        }
+        .board_paging {
+            width: 500px;
+            margin : 10px auto 20px;
+        }
+
+        .board_paging ul {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15%;
+            margin: 0;
+        }
+
+        .board_paging li {
+            list-style-type: none;
+        }
+
+    </style>
+</head>
+    <body>
+        <div id="root">
+            <header>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="/user/board">User</a></li>
+                        <li>Order</li>
+                        <li>Order Item</li>
+                        <li>Item</li>
+                        <li>Store</li>
+                    </ul>
+                </nav>
+            </header>
+            <div class="border"> </div>
+            <main id = "main">
+                <h1 class="board_name">Users</h1>
+                <section class="main_content">
+                    <div class="search_bar">
+                        <form action="/user/board" method="get">
+                            <label for="name">Name </label><input type="text" id="name" name="name"/>
+                            <div class="space"></div>
+                            <label for="gender">Gender </label>
+                            <select name="gender" id="gender" name="gender">
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                            </select>
+                            <div class="space"></div>
+                            <input type="submit" value="SEARCH">
+                        </form>
+                    </div>
+                    <div class="board_content">
+                        <div>
+                            <table>
+                                <col width=48%"></col>
+                                <col width="15%"></col>
+                                <col width="11%"></col>
+                                <col width="6%"></col>
+                                <col width="20%"></col>
+                                {% set header = page_datas[0] %}
+                                <tr>
+                                    {% for value in header.keys() %}
+                                    <th>{{value}}</th>
+                                    {% endfor %}
+                                </tr>
+                                {% for page_data in page_datas %}
+                                <tr>
+                                    {% for value in page_data.values() %}
+                                    <td>{{value}}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>    
+                        <div class="board_paging">
+                            <ul type="none">
+                                {% for i in range(0,total_page)%}
+                                    <li><a href="/user/board?page-num={{i+1}}">{{i+1}}</a></li>
+                                {%endfor%}
+                            </ul>
+                        </div>
+                    </div>    
+                </section>
+        </main>
+        <div class="border" style="margin-bottom:50px;"> </div>
+    </body>
+</html>
