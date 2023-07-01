@@ -173,10 +173,11 @@
             </header>
             <div class="border"> </div>
             <main id = "main">
-                <h1 class="board_name">Users</h1>
+                <h1 class="board_name">Items</h1>
                 <section class="main_content">
                     <div class="search_bar">
-                        <form action="/user/board/list" method="get">
+                        <!--TODO : 날짜 검색해서 필터 기능 추가하기 -->
+                        <!-- <form action="/user/board/list" method="get">
                             <label for="name">Name </label>
                             {% if name == "no search" %}
                             <input type="text" id="name" name="name"/>
@@ -207,32 +208,27 @@
                             </select>
                             <div class="space"></div>
                             <input type="submit" value="SEARCH">
-                        </form>
+                        </form> -->
                     </div>
                     <div class="board_content">
                         <div> 
                             <table>
-                                <col width="21%"></col>
-                                <col width="17%"></col>
-                                <col width="12%"></col>
-                                <col width="26%"></col>
-                                <col width="24%"></col>
+                                <col width="30%"></col>
+                                <col width="10%"></col>
+                                <col width="30%"></col>
+                                <col width="30%"></col>
                                 {% if page_datas %}
                                 {% set header = page_datas[0].keys() %}
                                 <tr>
                                     {% for value in header %}
-                                    {% if value != 'Id' %}
-                                        <th>{{value}}</th>
-                                    {% endif %}
+                                    <th>{{value}}</th>
                                     {% endfor %}
                                 </tr>
                                     {% for page_data in page_datas %}
                                     {% set id = page_data['Id'] %}
-                                    <tr onclick = window.location.href="{{ url_for('user_board_detail', id=id) }}">
+                                    <tr onclick = window.location.href="{{ url_for('order_board_detail', id=id) }}">
                                         {% for key, value in page_data.items() %}
-                                            {% if key != "Id" %}
-                                                <td>{{value}}</td>
-                                            {% endif %}
+                                            <td>{{value}}</td>
                                         {% endfor %}
                                     </tr>
                                     {% endfor %}
@@ -250,9 +246,9 @@
                                 {% set total_page = total_page %}
                                 {% for i in range( 0, total_page)%}
                                     {% if (i+1) == page_num %}
-                                    <li><a class="current_page" href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
+                                    <li><a class="current_page" href="{{ url_for('order_board_list', page_num=(i+1)) }}">{{i+1}}</a></li>
                                     {% else %}
-                                    <li><a href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
+                                    <li><a href="{{ url_for('order_board_list', page_num=(i+1)) }}">{{i+1}}</a></li>
                                     {% endif %}
                                 {%endfor%}
                                 <li><a href="#">▶</a></li>

@@ -2,10 +2,11 @@ from flask import Flask, url_for, render_template, redirect, request
 import csv
 import math
 from service.user.user_service import UserService
+from service.order.order_service import OrderService
 
 app = Flask(__name__)
 user_service = UserService()
-
+order_service = OrderService()
 # ----------view도 폴더를 생성해서 그 안에 소속되게 하고 싶었지만, templates 때문에 보류..
 
 # -------------------------------------------Home Start-----------------------------------------------------------------------
@@ -55,6 +56,47 @@ def user_board_detail():
     return response
 
 # -------------------------------------------User End-----------------------------------------------------------------------
+
+# -------------------------------------------Order Start-----------------------------------------------------------------------
+@app.route("/order/board/list")
+def order_board_list():
+    #log
+    print('----------------------------view : @app.route("/order/board/list")')
+    # parameter values
+    page_num = request.args.get("page_num", type=int, default=1)
+    # name = request.args.get("name", default="no search", type=str)
+    # gender = request.args.get("gender", default="no search", type=str)
+
+    # result
+    result = []
+    result = order_service.read_all()
+    # 서비스 호출 나누기
+    # if( name == 'no search' and gender == 'no search' ):
+    #     result = user_service.read_all()
+    # elif (len(name) != 0) and (len(gender) != 0) : 
+    #     result = user_service.read_name_gender(name, gender)
+
+    total_page, page_datas = get_page_info(page_num, result)
+
+    # response = render_template("order/board/list.html", datas=result, total_page=total_page, page_datas=page_datas, page_num=page_num, name=name, gender=gender)
+    response = render_template("order/board/list.html", datas=result, total_page=total_page, page_datas=page_datas, page_num=page_num)
+    return response
+
+
+@app.route("/order/board/detail")
+def order_board_detail():
+    #log
+    print('----------------------------view : @app.route("/order/board/detail")')
+    # parameter value
+    id = request.args.get("id", type=str)
+    #service호출
+    data = user_service.read_id(id)
+
+    #응답
+    response = render_template("user/board/detail.html", data = data)
+    return response
+
+# -------------------------------------------Order End-----------------------------------------------------------------------
 
 # -------------------------------------------Etc Start-----------------------------------------------------------------------
 def get_page_info(page_num, datas):
