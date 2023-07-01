@@ -35,6 +35,24 @@ class UserDB :
                 result.append(data)
         
         return result
+
+    
+    def read_name_both_gender(self, name) :
+        #log
+        print('----------------------------db : read_name_both_gender()')
+        datas = self.user_db()
+        result = [] 
+
+        # select문
+        # select * 
+        # from users
+        # where name like '%name%'
+
+        for data in datas : 
+            if name in data['Name'] :
+                result.append(data)
+        
+        return result
         
     def read_id(self, id) :
         #log

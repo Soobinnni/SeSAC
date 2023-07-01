@@ -150,7 +150,7 @@
             font-size: 1.2em;
         }
 
-        tbody tr:hover {
+        tbody tr:not(:first-child):hover {
             color: var(--bs-orange);
             font-weight: 700;
             background-color: var(--bs-gray-200);
@@ -177,14 +177,33 @@
                 <section class="main_content">
                     <div class="search_bar">
                         <form action="/user/board/list" method="get">
-                            <label for="name">Name </label><input type="text" id="name" name="name"/>
+                            <label for="name">Name </label>
+                            {% if name == "no search" %}
+                            <input type="text" id="name" name="name"/>
+                            {% else %}
+                            <input type="text" id="name" name="name" value="{{name}}" style="font-weight: 600;"/>
+                            {% endif %}
+
                             <div class="space"></div>
                             <label for="gender">Gender </label>
                             <select name="gender" id="gender" name="gender">
-                                <option value=""></option>
+                                {% if gender == "no data" %}
+                                <option value="Both">Both</option>
                                 <option value="Female">Female</option>
                                 <option value="Male">Male</option>
+                                {% elif gender == "Both" %}
+                                <option value="Both" selected>Both</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                {% elif gender == "Female" %}
                                 <option value="Both">Both</option>
+                                <option value="Female" selected>Female</option>
+                                <option value="Male">Male</option>
+                                {% else %}
+                                <option value="Both">Both</option>
+                                <option value="Female">Female</option>
+                                <option value="Male" selected>Male</option>
+                                {% endif %}
                             </select>
                             <div class="space"></div>
                             <input type="submit" value="SEARCH">
@@ -230,7 +249,7 @@
                                 {% set max = min + ( size - 1 )  %}
                                 {% set total_page = total_page %}
                                 {% for i in range( 0, total_page)%}
-                                    {% if i == page_num %}
+                                    {% if (i+1) == page_num %}
                                     <li><a class="current_page" href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
                                     {% else %}
                                     <li><a href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
