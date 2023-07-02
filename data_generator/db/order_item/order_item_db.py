@@ -19,41 +19,6 @@ class OrderItemDB :
         # from orderitems
         return self.order_item_db()
     
-    # def read_name_gender(self, name, gender) :
-    #     #log
-    #     print('----------------------------db-order_item : read_name_gender()')
-    #     datas = self.order_item_db()
-    #     result = [] 
-
-    #     # select문
-    #     # select * 
-    #     # from orderitems
-    #     # where name like '%name%' and gender = gender
-
-    #     for data in datas : 
-    #         if name in data['Name'] and gender == data['Gender'] :
-    #             result.append(data)
-        
-    #     return result
-
-    
-    # def read_name_both_gender(self, name) :
-    #     #log
-    #     print('----------------------------db-order_item : read_name_both_gender()')
-    #     datas = self.order_item_db()
-    #     result = [] 
-
-    #     # select문
-    #     # select * 
-    #     # from orderitems
-    #     # where name like '%name%'
-
-    #     for data in datas : 
-    #         if name in data['Name'] :
-    #             result.append(data)
-        
-    #     return result
-        
     def read_id(self, id) :
         #log
         print('----------------------------db-order_item : read_id()')

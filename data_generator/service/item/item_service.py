@@ -10,18 +10,6 @@ class ItemService():
         result = self.item_db.read_all()
         return result
     
-    # def read_name_gender(self, name, gender):
-    #     #log
-    #     print('----------------------------service-item : read_name_gender()')
-
-    #     result = None
-    #     if(gender != 'Both') :
-    #         result = self.item_db.read_name_gender(name, gender)
-    #     else :
-    #         result = self.item_db.read_name_both_gender(name)
-            
-    #     return result
-    
     def read_id(self, id):
         #log
         print('----------------------------service : read_id()')

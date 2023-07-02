@@ -18,41 +18,6 @@ class ItemDB :
         # select * 
         # from itmes
         return self.item_db()
-    
-    # def read_name_gender(self, name, gender) :
-    #     #log
-    #     print('----------------------------db-item : read_name_gender()')
-    #     datas = self.item_db()
-    #     result = [] 
-
-    #     # select문
-    #     # select * 
-    #     # from items
-    #     # where name like '%name%' and gender = gender
-
-    #     for data in datas : 
-    #         if name in data['Name'] and gender == data['Gender'] :
-    #             result.append(data)
-        
-    #     return result
-
-    
-    # def read_name_both_gender(self, name) :
-    #     #log
-    #     print('----------------------------db-item : read_name_both_gender()')
-    #     datas = self.item_db()
-    #     result = [] 
-
-    #     # select문
-    #     # select * 
-    #     # from items
-    #     # where name like '%name%'
-
-    #     for data in datas : 
-    #         if name in data['Name'] :
-    #             result.append(data)
-        
-    #     return result
         
     def read_id(self, id) :
         #log

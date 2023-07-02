@@ -10,18 +10,6 @@ class OrderItemService():
         result = self.order_item_db.read_all()
         return result
     
-    # def read_name_gender(self, name, gender):
-    #     #log
-    #     print('----------------------------service-order_item : read_name_gender()')
-
-    #     result = None
-    #     if(gender != 'Both') :
-    #         result = self.order_item_db.read_name_gender(name, gender)
-    #     else :
-    #         result = self.order_item_db.read_name_both_gender(name)
-            
-    #     return result
-    
     def read_id(self, id):
         #log
         print('----------------------------service-order_item : read_id()')

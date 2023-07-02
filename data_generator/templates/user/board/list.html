@@ -245,15 +245,11 @@
                         <div class="board_paging">
                             <ul type="none">
                                 <li><a href="#">◀</a></li>
-                                {% set size = 3 %}
-                                {% set min = ( page_num // ( size + 1 ) * size ) + 1 %}
-                                {% set max = min + ( size - 1 )  %}
-                                {% set total_page = total_page %}
-                                {% for i in range( 0, total_page)%}
-                                    {% if (i+1) == page_num %}
-                                    <li><a class="current_page" href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
+                                {% for page in page_list %}
+                                    {% if page == page_num %}
+                                    <li><a class="current_page" href="{{ url_for('user_board_list', page_num=page, name=name, gender=gender) }}">{{page}}</a></li>
                                     {% else %}
-                                    <li><a href="{{ url_for('user_board_list', page_num=(i+1),name=name, gender=gender) }}">{{i+1}}</a></li>
+                                    <li><a href="{{ url_for('user_board_list', page_num=page, name=name, gender=gender) }}">{{page}}</a></li>
                                     {% endif %}
                                 {%endfor%}
                                 <li><a href="#">▶</a></li>
