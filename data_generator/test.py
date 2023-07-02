@@ -1,3 +1,7 @@
+#TODO : app완성 시 삭제 시킬 파일(test.py)
+
+
+
 # total_page = 13  # 전체 페이지
 # size = 3  # 화면에 노출할 최대 페이지 수
 
