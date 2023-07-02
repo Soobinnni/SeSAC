@@ -1,10 +1,6 @@
 import math
 
-
-def get_page_info(page_num, per_page, interval, datas): #현재 페이지 번호, 노출할 게시물 개수, 노출할 페이지 번호 간격, 게시데이터
-    #log
-    print('----------------------------paging : get_page_info')
-  
+def get_page_info(page_num, per_page, interval, datas): #현재 페이지 번호, 노출할 게시물 개수, 노출할 페이지 번호 간격, 게시데이터 
     cur_page_list = []
     page_datas = None
    
@@ -16,12 +12,12 @@ def get_page_info(page_num, per_page, interval, datas): #현재 페이지 번호
     cur_page_list = check_current_page_belongs(page_num, separated_page_list) #현재 페이지가 어느 요소에 속하는 지 검사
     page_datas = get_current_page_datas(page_num, per_page, datas)  #현재 페이지의 데이터 get
  
-    return (cur_page_list, page_datas)
+    return (total_page, cur_page_list, page_datas)
 
 def get_total_page(per_page, len_datas):
     total_page = 0
-    if len_datas != 0 :
-        total_page=math.ceil(len_datas/per_page)
+    # if len_datas != 0 :
+    total_page=math.ceil(len_datas/per_page)
     return total_page
 
 def get_crop_page(page_list, interval) :

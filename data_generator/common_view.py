@@ -8,13 +8,15 @@ from service.order_item.order_item_service import OrderItemService
 from service.item.item_service import ItemService
 from service.store.store_service import StoreService
 
-
 app = Flask(__name__)
+
+#services
 user_service = UserService()
 order_service = OrderService()
 order_item_service = OrderItemService()
 item_service = ItemService()
 store_service = StoreService()
+
 # ----------TODO : view도 폴더를 생성해서 그 안에 소속되게 하고 싶었지만, templates 때문에 보류..
 
 # -------------------------------------------Home Start-----------------------------------------------------------------------
@@ -43,11 +45,10 @@ def user_board_list():
     elif (len(name) != 0) and (len(gender) != 0) : 
         result = user_service.read_name_gender(name, gender)
 
-    print(f"------------------------------result : {result}")
 
-    page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
+    total_page, page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
 
-    response = render_template("user/board/list.html", datas=result, page_list=page_list, page_datas=page_datas, page_num=page_num, name=name, gender=gender)
+    response = render_template("user/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num, name=name, gender=gender)
     return response
 
 
@@ -78,9 +79,9 @@ def order_board_list():
     result = []
     result = order_service.read_all()
 
-    page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
+    total_page, page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
 
-    response = render_template("order/board/list.html", datas=result, page_list=page_list, page_datas=page_datas, page_num=page_num)
+    response = render_template("order/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num)
     return response
 
 
@@ -109,9 +110,9 @@ def order_item_board_list():
     # result
     result = []
     result = order_item_service.read_all()   
-    page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
+    total_page, page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
 
-    response = render_template("order_item/board/list.html", datas=result, page_list=page_list, page_datas=page_datas, page_num=page_num)
+    response = render_template("order_item/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num)
     return response
 
 
@@ -139,9 +140,9 @@ def item_board_list():
     # result
     result = []
     result = item_service.read_all()
-    page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
+    total_page, page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
 
-    response = render_template("item/board/list.html", datas=result, page_list=page_list, page_datas=page_datas, page_num=page_num)
+    response = render_template("item/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num)
     return response
 
 
@@ -169,9 +170,9 @@ def store_board_list():
     # result
     result = []
     result = store_service.read_all()
-    page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
+    total_page, page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
 
-    response = render_template("store/board/list.html", datas=result, page_list=page_list, page_datas=page_datas, page_num=page_num)
+    response = render_template("store/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num)
     return response
 
 
@@ -188,6 +189,6 @@ def store_board_detail():
     response = render_template("store/board/detail.html", data = data)
     return response
 # -------------------------------------------Store End-----------------------------------------------------------------------
-
+# ---------------------------------------------------------Main---------------------------------------------------------------
 if __name__ == "__main__":
     app.run(debug=True, port=5003)

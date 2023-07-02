@@ -144,7 +144,7 @@
         .board_paging li {
             list-style-type: none;
         }
-        .board_paging ul li a:hover, .current_page {
+        .board_paging ul li .page_num:hover, .pre_page_btn:hover, .next_page_btn:hover, .current_page {
             color : var(--bs-orange);
             font-weight: 600;
             font-size: 1.2em;
@@ -238,15 +238,34 @@
                         </div>    
                         <div class="board_paging">
                             <ul type="none">
-                                <li><a href="#">◀</a></li>
-                                {% for page in page_list %}
-                                    {% if page == page_num %}
-                                    <li><a class="current_page" href="{{ url_for('order_item_board_list', page_num = page) }}">{{page}}</a></li>
+                                {% if page_list  %}
+                                    {% if page_list[0] == 1 %}
+                                    <li><a style="color:var(--bs-gray-600);">◀</a></li>
                                     {% else %}
-                                    <li><a href="{{ url_for('order_item_board_list', page_num = page) }}">{{page}}</a></li>
+                                    {% set pre_page_num = page_list[0]-3 %}
+                                    <li><a class="pre_page_btn" href="{{ url_for('order_item_board_list', page_num=pre_page_num) }}">◀</a></li>
                                     {% endif %}
-                                {%endfor%}
-                                <li><a href="#">▶</a></li>
+                                {% endif %}
+                                {% if page_list != None %}
+                                    {% for page in page_list %}
+                                        {% if page == page_num %}
+                                        <li><a class="current_page" href="{{ url_for('order_item_board_list', page_num=page) }}">{{page}}</a></li>
+                                        {% else %}
+                                        <li><a class="page_num" href="{{ url_for('order_item_board_list', page_num=page) }}">{{page}}</a></li>
+                                        {% endif %}
+                                    {%endfor%}
+                                {% endif %}
+                                {% if page_list  %}
+                                    {# jinja2의 주석 / len()함수 대신 "대상 | length 활용" #}
+                                    {% set page_length = page_list | length %}
+                                    {% set page_index = page_length-1 %}
+                                    {% set next_page_num = page_list[page_index]+1 %}
+                                    {% if page_list[page_index] == total_page %}
+                                    <li><a style="color:var(--bs-gray-600); cursor:default">▶</a></li>
+                                    {% else %}
+                                    <li><a class="next_page_btn" href="{{ url_for('order_item_board_list', page_num=next_page_num) }}">▶</a></li>
+                                    {% endif %}
+                                {% endif %}
                             </ul>
                         </div>
                     </div>    
