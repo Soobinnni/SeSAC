@@ -1,4 +1,4 @@
-from db.user.user_db import UserDB
+from db.user_db import UserDB
 
 class UserService():
     def __init__(self):

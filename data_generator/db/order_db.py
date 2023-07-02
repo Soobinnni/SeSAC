@@ -1,10 +1,10 @@
 import csv
 
-class OrderItemDB : 
-    def order_item_db(self):
+class OrderDB : 
+    def order_db(self):
         datas =[]    
         #read data from csv file
-        with open("csv/orderitem.csv",'r',encoding='utf-8') as file:
+        with open("db/csv/order.csv",'r',encoding='utf-8') as file:
             csv_reader=csv.DictReader(file)
             for row in csv_reader:
                 clean_row = {key.strip() : value.strip() for key, value in row.items()}
@@ -13,21 +13,21 @@ class OrderItemDB :
 
     def read_all(self) : 
         #log
-        print('----------------------------db-order_item : read_all()')
+        print('----------------------------db-order : read_all()')
         # select문
         # select * 
-        # from orderitems
-        return self.order_item_db()
+        # from orders
+        return self.order_db()
     
     def read_id(self, id) :
         #log
-        print('----------------------------db-order_item : read_id()')
-        datas = self.order_item_db()
+        print('----------------------------db-order : read_id()')
+        datas = self.order_db()
         result = [] 
 
         # select문
         # select * 
-        # from orderitems
+        # from orders
         # where id = id
 
         for data in datas : 

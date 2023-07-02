@@ -4,7 +4,7 @@ class UserDB :
     def user_db(self):
         datas =[]    
         #read data from csv file
-        with open("csv/user.csv",'r',encoding='utf-8') as file:
+        with open("db/csv/user.csv",'r',encoding='utf-8') as file:
             csv_reader=csv.DictReader(file)
             for row in csv_reader:
                 clean_row = {key.strip() : value.strip() for key, value in row.items()}

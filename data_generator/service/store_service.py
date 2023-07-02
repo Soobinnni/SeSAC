@@ -1,4 +1,4 @@
-from db.store.store_db import StoreDB
+from db.store_db import StoreDB
 
 class StoreService():
     def __init__(self):

@@ -1,4 +1,4 @@
-from db.order.order_db import OrderDB
+from db.order_db import OrderDB
 
 class OrderService():
     def __init__(self):

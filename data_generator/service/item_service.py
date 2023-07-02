@@ -1,4 +1,4 @@
-from db.item.item_db import ItemDB
+from db.item_db import ItemDB
 
 class ItemService():
     def __init__(self):
