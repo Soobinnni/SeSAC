@@ -1,30 +1,30 @@
-from db.user.user_db import UserDB
+from db.store.store_db import StoreDB
 
-class UserService():
+class StoreService():
     def __init__(self):
-        self.user_db = UserDB()
+        self.store_db = StoreDB()
 
     def read_all(self):
         #log
-        print('----------------------------service : read_all()')
-        result = self.user_db.read_all()
+        print('----------------------------service-store : read_all()')
+        result = self.store_db.read_all()
         return result
     
-    def read_name_gender(self, name, gender):
-        #log
-        print('----------------------------service : read_name_gender()')
+    # def read_name_gender(self, name, gender):
+    #     #log
+    #     print('----------------------------service-store : read_name_gender()')
 
-        result = None
-        if(gender != 'Both') :
-            result = self.user_db.read_name_gender(name, gender)
-        else :
-            result = self.user_db.read_name_both_gender(name)
+    #     result = None
+    #     if(gender != 'Both') :
+    #         result = self.user_db.read_name_gender(name, gender)
+    #     else :
+    #         result = self.user_db.read_name_both_gender(name)
             
-        return result
+    #     return result
     
     def read_id(self, id):
         #log
-        print('----------------------------service : read_id()')
-        result = self.user_db.read_id(id)[0]
+        print('----------------------------service-store : read_id()')
+        result = self.store_db.read_id(id)[0]
         # select 1개이므로 인덱스 번호 0의 dic을 반환
         return result

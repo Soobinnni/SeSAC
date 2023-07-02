@@ -1,28 +1,180 @@
-<!DOCTYPE html>
-<html lang="ko"> 
+<html lang="ko">
 <head>
-    <meta charset="utf-8">
-    <title>
-        나의 웹 사이트~
-    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        :root {
+            --bs-blue: #0d6efd;
+            --bs-indigo: #6610f2;
+            --bs-purple: #6f42c1;
+            --bs-pink: #d63384;
+            --bs-red: #dc3545;
+            --bs-orange: #fd7e14;
+            --bs-yellow: #ffc107;
+            --bs-green: #198754;
+            --bs-teal: #20c997;
+            --bs-cyan: #0dcaf0;
+            --bs-white: #fff;
+            --bs-gray: #868e96;
+            --bs-gray-dark: #343a40;
+            --bs-gray-100: #f1f3f5;
+            --bs-gray-200: #e9ecef;
+            --bs-gray-300: #dee2e6;
+            --bs-gray-400: #ced4da;
+            --bs-gray-500: #adb5bd;
+            --bs-gray-600: #868e96;
+            --bs-gray-700: #495057;
+            --bs-gray-800: #343a40;
+            --bs-gray-900: #212529;
+            --bs-primary: #00c471;
+            --bs-secondary: #343a40;
+            --bs-success: #198754;
+            --bs-info: #0d6efd;
+            --bs-warning: #ffc107;
+            --bs-danger: #dc3545;
+            --bs-light: #f1f3f5;
+            --bs-dark: #212529;
+            --bs-body-bg: #fff;
+        }
+        html, body {
+            width: 100%;
+        }
+        a {
+            text-decoration: none;
+            color : inherit;
+        }
+        li {
+            list-style: none;
+        }
+        nav.nav ul{ 
+            margin : 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            padding: 1.5% 10%;
+        }
+        .border {
+            border-bottom: 3px solid var(--bs-warning);
+        }
+        nav.nav ul li {
+            margin-right : 5%;
+        }
+        nav.nav {
+            background-color: var(--bs-dark);
+            color : var(--bs-white);
+            font-weight : 800;       
+            cursor: pointer;
+        }
+        nav.nav li:hover {
+            color : var(--bs-gray-400)
+        }
+        div.search_bar {
+            margin-bottom : 2%;
+        }
+        main#main {
+            width: 80%;
+            margin : 0 auto;
+            min-height: 500px;
+        }
+        .board_name {
+            font-weight: 800;letter-spacing: -1px;
+        }
+        .board_content table {
+            width:100%;
+            margin-top : 30px;
+            border-collapse : collapse;
+        }
+        .board_content table th {
+            background-color: var(--bs-yellow);
+            padding : 5px;
+        }
+        .board_content table td {
+            padding : 13px;
+            text-align: center;
+            border-bottom: 1px solid var(--bs-gray-300);
+        }
+        .board_content table td a:hover{
+                color : var(--bs-orange)
+        }
+        .search_bar form label {
+            font-size: 1.2em;
+            font-weight: 600;
+            color : var(--bs-gray-600)
+        }
+        .main_content .search_bar form select {
+            width : 100px;
+            text-align: center;
+            height : 20px;
+            font-weight: 600;
+        }
+        .main_content .search_bar form input[type=submit] {
+            cursor: pointer;
+            width : 120px;
+            background-color: var(--bs-orange);
+            color: var(--bs-white);
+            text-align: center;
+            height : 20px;
+            font-weight: 600;
+            border : 1px solid var(--bs-gray-600);
+        }
+        .main_content .search_bar form input[type=submit]:hover {
+            background-color: var(--bs-white);
+            color: var(--bs-orange);
+        }
+        .search_bar form input+.space {
+            margin : 0 5px;
+            display: inline-block;
+        }
+        .search_bar form select+.space {
+            margin : 0 10px;
+            display: inline-block;
+        }
+        .board_paging {
+            margin : 10px auto 20px;
+        }
+
+        .board_paging ul {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 40%;
+            margin: 0;
+        }
+
+        .board_paging li {
+            list-style-type: none;
+        }
+        .board_paging ul li a:hover, .current_page {
+            color : var(--bs-orange);
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        tbody tr:not(:first-child):hover {
+            color: var(--bs-orange);
+            font-weight: 700;
+            background-color: var(--bs-gray-200);
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
-    <h1>플라스크 홈페이지 입니다.</h1>
-    <!-- Jinja2 Template문법으로 코딩 -->
-    {% set header = data[0] %}
-    <table border="1">
-        <tr>
-        {% for key, value in header.items() %}
-            <td>{{key}}</td>
-        {% endfor %}
-        </tr>
-        {% for row in data %}
-        <tr>
-            {% for value in row.values() %}
-                <td>{{value}}</td>
-            {% endfor%}
-            </tr>   
-        {% endfor %}
-    </table>
-</body>
+    <body>
+        <div id="root">
+            <header>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/user/board/list">User</a></li>
+                        <li><a href="/order/board/list">Order</a></li>
+                        <li><a href="/order-item/board/list">Order Item</a></li>
+                        <li><a href="/item/board/list">Item</a></li>
+                        <li><a href="/store/board/list">Store</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div class="border"> </div>
+            <main id = "main">
+            </main>
+            <div class="border" style="margin-bottom:50px;"> </div>
+        </div>
+    </body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>item detail</title>
     <style>
         :root {
             --bs-blue: #0d6efd;
@@ -140,17 +140,18 @@
             <header>
                 <nav class="nav">
                     <ul>
+                        <li><a href="/">Home</a></li>
                         <li><a href="/user/board/list">User</a></li>
-                        <li>Order</li>
-                        <li>Order Item</li>
-                        <li>Item</li>
-                        <li>Store</li>
+                        <li><a href="/order/board/list">Order</a></li>
+                        <li><a href="/order-item/board/list">Order Item</a></li>
+                        <li><a href="/item/board/list">Item</a></li>
+                        <li><a href="/store/board/list">Store</a></li>
                     </ul>
                 </nav>
             </header>
             <div class="border"> </div>
             <main id = "main">
-                <h1 class="board_name">User {{data['Name']}}</h1>
+                <h1 class="board_name">Item {{data['Name']}}</h1>
                 <section class="main_content"> 
                     <div class="detail_content">
                         <div class="back_btn">
@@ -158,12 +159,10 @@
                             <button onclick="window.history.back()">뒤로가기</button>
                         </div>
                         <table>
-                            <col width=30%"></col>
-                            <col width="15%"></col>
-                            <col width="11%"></col>
-                            <col width="6%"></col>
+                            <col width="40%"></col>
                             <col width="20%"></col>
-                            <col width="18%"></col>
+                            <col width="20%"></col>
+                            <col width="20%"></col>
                             <tr>
                                 {% for header in data.keys() %}
                                 <th>{{header}}</th>
@@ -179,5 +178,6 @@
                 </section>
             </main>
         <div class="border" style="margin-bottom:50px;"> </div>
+    </div>
     </body>
 </html>

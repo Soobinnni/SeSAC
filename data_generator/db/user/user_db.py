@@ -13,7 +13,7 @@ class UserDB :
 
     def read_all(self) : 
         #log
-        print('----------------------------db : read_all()')
+        print('----------------------------db-user : read_all()')
         # select문
         # select * 
         # from users
@@ -21,7 +21,7 @@ class UserDB :
     
     def read_name_gender(self, name, gender) :
         #log
-        print('----------------------------db : read_name_gender()')
+        print('----------------------------db-user : read_name_gender()')
         datas = self.user_db()
         result = [] 
 
@@ -39,7 +39,7 @@ class UserDB :
     
     def read_name_both_gender(self, name) :
         #log
-        print('----------------------------db : read_name_both_gender()')
+        print('----------------------------db-user : read_name_both_gender()')
         datas = self.user_db()
         result = [] 
 
@@ -56,7 +56,7 @@ class UserDB :
         
     def read_id(self, id) :
         #log
-        print('----------------------------db : read_id()')
+        print('----------------------------db-user : read_id()')
         datas = self.user_db()
         result = [] 
 

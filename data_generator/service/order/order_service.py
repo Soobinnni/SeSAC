@@ -6,13 +6,13 @@ class OrderService():
 
     def read_all(self):
         #log
-        print('----------------------------service : read_all()')
+        print('----------------------------service-order : read_all()')
         result = self.order_db.read_all()
         return result
     
     def read_name_gender(self, name, gender):
         #log
-        print('----------------------------service : read_name_gender()')
+        print('----------------------------service-order : read_name_gender()')
 
         result = None
         if(gender != 'Both') :
@@ -24,7 +24,7 @@ class OrderService():
     
     def read_id(self, id):
         #log
-        print('----------------------------service : read_id()')
+        print('----------------------------service-order : read_id()')
         result = self.order_db.read_id(id)[0]
         # select 1개이므로 인덱스 번호 0의 dic을 반환
         return result

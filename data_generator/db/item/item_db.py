@@ -1,10 +1,10 @@
 import csv
 
-class UserDB : 
-    def user_db(self):
+class ItemDB : 
+    def item_db(self):
         datas =[]    
         #read data from csv file
-        with open("csv/user.csv",'r',encoding='utf-8') as file:
+        with open("csv/item.csv",'r',encoding='utf-8') as file:
             csv_reader=csv.DictReader(file)
             for row in csv_reader:
                 clean_row = {key.strip() : value.strip() for key, value in row.items()}
@@ -13,56 +13,56 @@ class UserDB :
 
     def read_all(self) : 
         #log
-        print('----------------------------db : read_all()')
+        print('----------------------------db-item : read_all()')
         # select문
         # select * 
-        # from users
-        return self.user_db()
+        # from itmes
+        return self.item_db()
     
-    def read_name_gender(self, name, gender) :
-        #log
-        print('----------------------------db : read_name_gender()')
-        datas = self.user_db()
-        result = [] 
+    # def read_name_gender(self, name, gender) :
+    #     #log
+    #     print('----------------------------db-item : read_name_gender()')
+    #     datas = self.item_db()
+    #     result = [] 
 
-        # select문
-        # select * 
-        # from users
-        # where name like '%name%' and gender = gender
+    #     # select문
+    #     # select * 
+    #     # from items
+    #     # where name like '%name%' and gender = gender
 
-        for data in datas : 
-            if name in data['Name'] and gender == data['Gender'] :
-                result.append(data)
+    #     for data in datas : 
+    #         if name in data['Name'] and gender == data['Gender'] :
+    #             result.append(data)
         
-        return result
+    #     return result
 
     
-    def read_name_both_gender(self, name) :
-        #log
-        print('----------------------------db : read_name_both_gender()')
-        datas = self.user_db()
-        result = [] 
+    # def read_name_both_gender(self, name) :
+    #     #log
+    #     print('----------------------------db-item : read_name_both_gender()')
+    #     datas = self.item_db()
+    #     result = [] 
 
-        # select문
-        # select * 
-        # from users
-        # where name like '%name%'
+    #     # select문
+    #     # select * 
+    #     # from items
+    #     # where name like '%name%'
 
-        for data in datas : 
-            if name in data['Name'] :
-                result.append(data)
+    #     for data in datas : 
+    #         if name in data['Name'] :
+    #             result.append(data)
         
-        return result
+    #     return result
         
     def read_id(self, id) :
         #log
-        print('----------------------------db : read_id()')
-        datas = self.user_db()
+        print('----------------------------db-item : read_id()')
+        datas = self.item_db()
         result = [] 
 
         # select문
         # select * 
-        # from users
+        # from items
         # where id = id
 
         for data in datas : 

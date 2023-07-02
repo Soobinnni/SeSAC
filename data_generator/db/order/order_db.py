@@ -13,7 +13,7 @@ class OrderDB :
 
     def read_all(self) : 
         #log
-        print('----------------------------db : read_all()')
+        print('----------------------------db-order : read_all()')
         # select문
         # select * 
         # from orders
@@ -21,7 +21,7 @@ class OrderDB :
     
     def read_name_gender(self, name, gender) :
         #log
-        print('----------------------------db : read_name_gender()')
+        print('----------------------------db-order : read_name_gender()')
         datas = self.order_db()
         result = [] 
 
@@ -39,7 +39,7 @@ class OrderDB :
     
     def read_name_both_gender(self, name) :
         #log
-        print('----------------------------db : read_name_both_gender()')
+        print('----------------------------db-order : read_name_both_gender()')
         datas = self.order_db()
         result = [] 
 
@@ -56,7 +56,7 @@ class OrderDB :
         
     def read_id(self, id) :
         #log
-        print('----------------------------db : read_id()')
+        print('----------------------------db-order : read_id()')
         datas = self.order_db()
         result = [] 
 
