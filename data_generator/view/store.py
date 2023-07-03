@@ -12,13 +12,25 @@ def store_board_list():
     print('----------------------------view-store : @store_bp.route("/store/board/list")')
     # parameter values
     page_num = request.args.get("page_num", type=int, default=1)
+    name = request.args.get("name", type=str, default="no search")
+    address = request.args.get("address", type=str, default="no search")
   
+    print('------------------------',name)
+    print('------------------------',address)
     # result
     result = []
-    result = store_service.read_all()
+    if name == "no search" and address == "no search":
+        result = store_service.read_all()
+    elif len(name) == 0 :
+        result = store_service.read_address(address)
+    elif len(address) == 0 :
+        result = store_service.read_name(name)
+    elif (len(address)!=0) and (len(name)!=0) :
+        result = store_service.read_name_address(name, address)
+
     total_page, page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
 
-    response = render_template("store/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num)
+    response = render_template("store/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num, name = name, address = address)
     return response
 
 

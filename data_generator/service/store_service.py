@@ -10,6 +10,24 @@ class StoreService():
         result = self.store_db.read_all()
         return result
     
+    def read_address(self, address):
+        #log
+        print('----------------------------service-store : read_address()')
+        result = self.store_db.read_address(address)
+        return result
+    
+    def read_name(self, name):
+        #log
+        print('----------------------------service-store : read_name()')
+        result = self.store_db.read_name(name)
+        return result
+    
+    def read_name_address(self, name, address):
+        #log
+        print('----------------------------service-store : read_name_address()')
+        result = self.store_db.read_name_address(name, address)
+        return result
+    
     def read_id(self, id):
         #log
         print('----------------------------service-store : read_id()')

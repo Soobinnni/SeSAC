@@ -18,6 +18,50 @@ class StoreDB :
         # select * 
         # from stores
         return self.store_db()
+
+    def read_address(self, address) : 
+        #log
+        print('----------------------------db-store : read_address()')
+        datas = self.store_db()
+        result = [] 
+        # select문
+        # select * 
+        # from stores
+        # where address like '%address%'
+        for data in datas : 
+            if address in data['Address'] :
+                result.append(data)
+        
+        return result
+
+    def read_name(self, name) : 
+        #log
+        print('----------------------------db-store : read_name()')
+        datas = self.store_db()
+        result = [] 
+        # select문
+        # select * 
+        # from stores
+        # where name like '%name%'
+        for data in datas : 
+            if name in data['Name'] :
+                result.append(data)
+        
+        return result
+
+    def read_name_address(self, name, address) : 
+        #log
+        print('----------------------------db-store : read_name_address()')
+        datas = self.store_db()
+        result = [] 
+        # select문
+        # select * 
+        # from stores
+        # where address like '%address%' and name like '%name%'
+        for data in datas : 
+            if name in data['Name'] and address in data['Address'] :
+                result.append(data)
+        return result
     
     def read_id(self, id) :
         #log
