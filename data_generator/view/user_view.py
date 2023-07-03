@@ -1,11 +1,12 @@
 from flask import Blueprint, Flask, render_template, request
 
-from view.paging import get_page_info
+from view.paging_view import get_page_info
 from service.user_service import UserService
+from domain.user import User
 
 user_bp = Blueprint('user', __name__, url_prefix='/user')
 user_service = UserService()
-
+# --------------------------------------------------------board-----------------------------------------------------------------
 @user_bp.route("/board/list")
 def user_board_list():
     #log
@@ -42,4 +43,36 @@ def user_board_detail():
 
     #응답
     response = render_template("user/board/detail.html", data = data)
+    return response
+# --------------------------------------------------------register-----------------------------------------------------------------
+@user_bp.route("/register", methods = ['GET', 'POST'])
+def user_register():
+
+    response = None
+    if request.method == 'GET' :
+        #log
+        print('----------------------------view-user : @user_bp.route("/register", methods = ["GET"])')
+        #응답
+        response = render_template("user/register.html")
+
+    elif request.method == 'POST' :
+        #log
+        print('----------------------------view-user : @user_bp.route("/register", methods = ["POST"])')
+        
+        # form value
+        name = request.form['name']
+        gender =  request.form['gender']
+        # age =  request.form['age']
+        birthdate =  request.form['birthdate']
+        address =  request.form['address']
+
+        # user domain init
+        user = User(name, gender, birthdate, address)
+
+        # user create service
+        user_service.create(user)
+
+        #응답
+        response = render_template("user/register.html")
+
     return response

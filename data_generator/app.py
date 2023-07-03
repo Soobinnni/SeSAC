@@ -1,10 +1,10 @@
 from flask import Flask, render_template
 
-from view.user import user_bp
-from view.item import item_bp
-from view.order import order_bp
-from view.order_item import order_item_bp
-from view.store import store_bp
+from view.user_view import user_bp
+from view.item_view import item_bp
+from view.order_view import order_bp
+from view.order_item_view import order_item_bp
+from view.store_view import store_bp
 
 app = Flask(__name__)
 # -------------------------------------------Home-----------------------------------------------------------------------

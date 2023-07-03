@@ -1,6 +1,9 @@
 import csv
 
 class UserDB : 
+    # TODO : read 함수들도 형태를 domain에 담아서 비교하는 것으로 바꾸기!
+
+    # -----------------------------------------READ-----------------------------------------------------
     def user_db(self):
         datas =[]    
         #read data from csv file
@@ -70,3 +73,14 @@ class UserDB :
                 result.append(data)
         
         return result
+    # -----------------------------------------CREATE-----------------------------------------------------
+    def add_user_db(self, data):
+        #create data to csv file
+        with open("db/csv/user.csv",'a',encoding='utf-8', newline='') as file:
+            csv_writer=csv.writer(file)
+            csv_writer.writerow(data)
+
+    def create(self, user_list) :
+        #log
+        print('----------------------------db-user : create()')
+        self.add_user_db(user_list)

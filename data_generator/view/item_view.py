@@ -1,6 +1,6 @@
 from flask import Blueprint, Flask, render_template, request
 
-from view.paging import get_page_info
+from view.paging_view import get_page_info
 from service.item_service import ItemService
 
 item_bp = Blueprint('item', __name__, url_prefix='/item')

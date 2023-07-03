@@ -1,4 +1,6 @@
 from db.user_db import UserDB
+from domain.user import User
+from db.mk_uuid import mk_uuid
 
 class UserService():
     def __init__(self):
@@ -28,3 +30,24 @@ class UserService():
         result = self.user_db.read_id(id)[0]
         # select 1개이므로 인덱스 번호 0의 dic을 반환
         return result
+    
+    def create(self, user) :
+        #log
+        print('----------------------------service-user : create()')
+
+        #domain
+        user = user
+
+        #property
+        uuid = mk_uuid()
+        name = user.name
+        gender = user.gender
+        age = user.age
+        birthdate = user.birthdate
+        address = user.address
+
+        #list
+        user_list = [uuid, name, gender, age, birthdate, address]
+
+        #db
+        self.user_db.create(user_list)
