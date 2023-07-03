@@ -79,3 +79,14 @@ class StoreDB :
                 result.append(data)
         
         return result
+    # -----------------------------------------CREATE-----------------------------------------------------
+    def add_store_db(self, data):
+        #create data to csv file
+        with open("db/csv/store.csv",'a',encoding='utf-8', newline='') as file:
+            csv_writer=csv.writer(file)
+            csv_writer.writerow(data)
+
+    def create(self, store_list) :
+        #log
+        print('----------------------------db-store : create()')
+        self.add_store_db(store_list)

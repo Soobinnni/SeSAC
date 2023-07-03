@@ -62,7 +62,6 @@ def user_register():
         # form value
         name = request.form['name']
         gender =  request.form['gender']
-        # age =  request.form['age']
         birthdate =  request.form['birthdate']
         address =  request.form['address']
 

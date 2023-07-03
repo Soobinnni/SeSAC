@@ -1,3 +1,4 @@
+from db.mk_uuid import mk_uuid
 from db.store_db import StoreDB
 
 class StoreService():
@@ -34,3 +35,22 @@ class StoreService():
         result = self.store_db.read_id(id)[0]
         # select 1개이므로 인덱스 번호 0의 dic을 반환
         return result
+    
+    def create(self, store) :
+        #log
+        print('----------------------------service-store : create()')
+
+        #domain
+        store = store
+
+        #property
+        uuid = mk_uuid()
+        name = store.name
+        type_ = store.type_
+        address = store.address
+
+        #list
+        store_list = [uuid, name, type_, address]
+
+        #db
+        self.store_db.create(store_list)

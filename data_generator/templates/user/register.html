@@ -78,7 +78,6 @@
             border-bottom : 1px solid var(--bs-gray-100);
         }
         .header {
-            font-family: 'Caprasimo', cursive;
             padding : 2% 0 1%;
             letter-spacing: -1px;
             font-size: 2.5em;
@@ -141,6 +140,7 @@
             background-color: var(--bs-dark);
             color : var(--bs-light);
             font-weight: 700;
+            font-size: 40%;
         }
         .user_register_btn input:hover, .user_register_btn button:hover {
             background-color: var(--bs-orange);
@@ -182,12 +182,6 @@
                                     </select>
                                 </td>
                             </tr>
-                            <!--age
-                            <tr>
-                                <td><label for="age">Age </label></td>
-                                <td><input type = "text" name = "age" placeholder="나이를 입력하세요(숫자만)" id = "age"></td>
-                            </tr>-->
-                            <!--birthdate-->
                             <tr>
                                 <td><label for="birthdate">Birthdate </label></td>
                                 <td><input type = "date" name = "birthdate" id = "birthdate" value="1998-06-17"></td>
@@ -199,8 +193,8 @@
                             </tr>
                         </table>
                         <div class="user_register_btn">
-                            <button type="button" onclick = "window.location.href = '/'">취소하기</button>
                             <input type="submit" value="등록하기"></td>
+                            <button type="button" onclick = "window.location.href = '/'">취소하기</button>
                         </div>
                     </form>
                 </div>

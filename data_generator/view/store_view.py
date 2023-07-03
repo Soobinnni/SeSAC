@@ -2,6 +2,7 @@ from flask import Blueprint, Flask, render_template, request
 
 from view.paging_view import get_page_info
 from service.store_service import StoreService
+from domain.store import Store
 
 store_bp = Blueprint('store', __name__, url_prefix='/store')
 store_service = StoreService()
@@ -43,4 +44,38 @@ def store_board_detail():
 
     #응답
     response = render_template("store/board/detail.html", data = data)
+    return response
+
+# --------------------------------------------------------register-----------------------------------------------------------------
+@store_bp.route("/register", methods = ['GET', 'POST'])
+def store_register():
+    response = None
+    if request.method == 'GET' :
+        #log
+        print('----------------------------view-store : @store_bp.route("/register", methods = ["GET"])')
+        #응답
+        response = render_template("store/register.html")
+
+    elif request.method == 'POST' :
+        #log
+        print('----------------------------view-store : @store_bp.route("/register", methods = ["POST"])')
+        
+        # form value
+        type_ =  request.form['type']
+        local =  request.form['local']
+        store_num =  request.form['store_num']
+        address =  request.form['address']
+
+        # mk name ex: 스타벅스 홍대8호점
+        name = type_ + " " + local + str(store_num)+"호점"
+
+        # store domain init
+        store = Store(name, type_, address)
+
+        # store create service
+        store_service.create(store)
+
+        #응답
+        response = render_template("store/register.html")
+
     return response
