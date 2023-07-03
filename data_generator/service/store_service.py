@@ -13,19 +13,19 @@ class StoreService():
     def read_address(self, address):
         #log
         print('----------------------------service-store : read_address()')
-        result = self.store_db.read_address(address)
+        result = self.store_db.read_address(address.strip())
         return result
     
     def read_name(self, name):
         #log
         print('----------------------------service-store : read_name()')
-        result = self.store_db.read_name(name)
+        result = self.store_db.read_name(name.strip())
         return result
     
     def read_name_address(self, name, address):
         #log
         print('----------------------------service-store : read_name_address()')
-        result = self.store_db.read_name_address(name, address)
+        result = self.store_db.read_name_address(name.strip(), address.strip())
         return result
     
     def read_id(self, id):

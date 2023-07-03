@@ -14,9 +14,7 @@ def store_board_list():
     page_num = request.args.get("page_num", type=int, default=1)
     name = request.args.get("name", type=str, default="no search")
     address = request.args.get("address", type=str, default="no search")
-  
-    print('------------------------',name)
-    print('------------------------',address)
+    
     # result
     result = []
     if name == "no search" and address == "no search":

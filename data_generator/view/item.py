@@ -15,7 +15,6 @@ def item_board_list():
     name = request.args.get("name", type=str, default="no search")
     unit_price = request.args.get("unit_price", type=int, default=-1)
 
-    print('---------------------',unit_price)
     # result
     result = []
     if (name == 'no search') and (unit_price == -1):

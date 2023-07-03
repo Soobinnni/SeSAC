@@ -13,7 +13,6 @@ def order_board_list():
     # parameter values
     page_num = request.args.get("page_num", type=int, default=1)
     order_at = request.args.get("order_at", type=str, default="no search")
-    print('------------------------------------------------',order_at)
     # result
     result = []
     if order_at == 'no search' :

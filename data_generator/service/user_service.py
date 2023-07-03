@@ -16,9 +16,9 @@ class UserService():
 
         result = None
         if(gender != 'Both') :
-            result = self.user_db.read_name_gender(name, gender)
+            result = self.user_db.read_name_gender(name.strip(), gender)
         else :
-            result = self.user_db.read_name_both_gender(name)
+            result = self.user_db.read_name_both_gender(name.strip())
             
         return result
     

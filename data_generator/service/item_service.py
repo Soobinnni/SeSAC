@@ -13,13 +13,13 @@ class ItemService():
     def read_name(self, name):
         #log
         print('----------------------------service-item : read_name()')
-        result = self.item_db.read_name(name)
+        result = self.item_db.read_name(name.strip())
         return result
     
     def read_name_price(self, name, price):
         #log
         print('----------------------------service-item : read_name_price()')
-        result = self.item_db.read_name_price(name, price)
+        result = self.item_db.read_name_price(name.strip(), price.strip())
         return result
     
     def read_id(self, id):
