@@ -178,38 +178,24 @@
                 <section class="main_content">
                     <div class="search_bar">
                         <!--TODO : Name,Type,UnitPriceAmericano Coffee,Coffee,3000로 어떤 검색 필터를 만들지 생각하기-->
-                        <!-- <form action="/user/board/list" method="get">
+                        <form action="{{url_for('item.item_board_list')}}" method="get">
                             <label for="name">Name </label>
                             {% if name == "no search" %}
                             <input type="text" id="name" name="name"/>
                             {% else %}
                             <input type="text" id="name" name="name" value="{{name}}" style="font-weight: 600;"/>
                             {% endif %}
-
                             <div class="space"></div>
-                            <label for="gender">Gender </label>
-                            <select name="gender" id="gender" name="gender">
-                                {% if gender == "no search" %}
-                                <option value="Both">Both</option>
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                                {% elif gender == "Both" %}
-                                <option value="Both" selected>Both</option>
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                                {% elif gender == "Female" %}
-                                <option value="Both">Both</option>
-                                <option value="Female" selected>Female</option>
-                                <option value="Male">Male</option>
+                            <label for="unit_price">Unit Price </label>
+                                {% if unit_price == -1 %}
+                                <input type="text" name="unit_price" id="unit_price" >
                                 {% else %}
-                                <option value="Both">Both</option>
-                                <option value="Female">Female</option>
-                                <option value="Male" selected>Male</option>
+                                <input type="text" name="unit_price" id="unit_price" value="{{unit_price}}" style="font-weight: 600;">
                                 {% endif %}
                             </select>
                             <div class="space"></div>
                             <input type="submit" value="SEARCH">
-                        </form> -->
+                        </form>
                     </div>
                     <div class="board_content">
                         <div> 
@@ -252,15 +238,15 @@
                                     <li><a style="color:var(--bs-gray-600);">◀</a></li>
                                     {% else %}
                                     {% set pre_page_num = page_list[0]-3 %}
-                                    <li><a class="pre_page_btn" href="{{ url_for('item.item_board_list', page_num = pre_page_num) }}">◀</a></li>
+                                    <li><a class="pre_page_btn" href="{{ url_for('item.item_board_list', page_num = pre_page_num, name=name, unit_price = unit_price) }}">◀</a></li>
                                     {% endif %}
                                 {% endif %}
                                 {% if page_list != None %}
                                     {% for page in page_list %}
                                         {% if page == page_num %}
-                                        <li><a class="current_page" href="{{ url_for('item.item_board_list', page_num = page) }}">{{page}}</a></li>
+                                        <li><a class="current_page" href="{{ url_for('item.item_board_list', page_num = page, name=name, unit_price = unit_price) }}">{{page}}</a></li>
                                         {% else %}
-                                        <li><a class="page_num" href="{{ url_for('item.item_board_list', page_num = page) }}">{{page}}</a></li>
+                                        <li><a class="page_num" href="{{ url_for('item.item_board_list', page_num = page, name=name, unit_price = unit_price) }}">{{page}}</a></li>
                                         {% endif %}
                                     {%endfor%}
                                 {% endif %}
@@ -272,7 +258,7 @@
                                     {% if page_list[page_index] == total_page %}
                                     <li><a style="color:var(--bs-gray-600); cursor:default">▶</a></li>
                                     {% else %}
-                                    <li><a class="next_page_btn" href="{{ url_for('item.item_board_list', page_num=next_page_num, name=name, gender=gender) }}">▶</a></li>
+                                    <li><a class="next_page_btn" href="{{ url_for('item.item_board_list', page_num=next_page_num, name=name, unit_price = unit_price) }}">▶</a></li>
                                     {% endif %}
                                 {% endif %}
                             </ul>

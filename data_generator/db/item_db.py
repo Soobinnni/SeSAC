@@ -18,6 +18,34 @@ class ItemDB :
         # select * 
         # from itmes
         return self.item_db()
+
+    def read_name(self, name) : 
+        #log
+        print('----------------------------db-item : read_name()')
+        datas = self.item_db()
+        result = [] 
+        # select문
+        # select * 
+        # from itmes
+        # where name like %name%
+        for data in datas : 
+            if name.lower() in data['Name'].lower() :
+                result.append(data)
+        return result
+
+    def read_name_price(self, name, price) : 
+        #log
+        print('----------------------------db-item : read_all()')
+        datas = self.item_db()
+        result = [] 
+        # select문
+        # select * 
+        # from itmes
+        # where name like %name% and price = price
+        for data in datas : 
+            if name in data['Name'] and price == data['UnitPrice'] :
+                result.append(data)
+        return result
         
     def read_id(self, id) :
         #log

@@ -10,6 +10,12 @@ class OrderService():
         result = self.order_db.read_all()
         return result
     
+    def read_order_date(self, order_date) :
+        #log
+        print('----------------------------service-order : read_order_date()')
+        result = self.order_db.read_order_date(order_date)
+        return result
+
     def read_id(self, id):
         #log
         print('----------------------------service-order : read_id()')

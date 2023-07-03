@@ -19,6 +19,22 @@ class OrderDB :
         # from orders
         return self.order_db()
     
+    def read_order_date(self, order_date) : 
+        #log
+        print('----------------------------db-order : read_order_date()')
+        datas = self.order_db()
+        result = []
+        # select문
+        # select * 
+        # from orders
+        # where order_at = order_date
+
+        for data in datas :
+            if order_date == data['OrderAt'][0:10] : 
+                result.append(data)
+
+        return result
+    
     def read_id(self, id) :
         #log
         print('----------------------------db-order : read_id()')

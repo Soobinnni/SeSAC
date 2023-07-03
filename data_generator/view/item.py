@@ -12,13 +12,22 @@ def item_board_list():
     print('----------------------------view-item : @item_bp.route("/item/board/list")')
     # parameter values
     page_num = request.args.get("page_num", type=int, default=1)
-    
+    name = request.args.get("name", type=str, default="no search")
+    unit_price = request.args.get("unit_price", type=int, default=-1)
+
+    print('---------------------',unit_price)
     # result
     result = []
-    result = item_service.read_all()
+    if (name == 'no search') and (unit_price == -1):
+        result = item_service.read_all()
+    elif (len(name) !=0) and ( unit_price == -1) :
+        result = item_service.read_name(name)
+    elif (len(name) !=0) and ( unit_price != -1) :
+        result = item_service.read_name_price(name, unit_price)
+
     total_page, page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
 
-    response = render_template("item/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num)
+    response = render_template("item/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num, name=name, unit_price = unit_price)
     return response
 
 

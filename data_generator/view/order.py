@@ -12,14 +12,18 @@ def order_board_list():
     print('----------------------------view-order : @order_bp.route("/order/board/list")')
     # parameter values
     page_num = request.args.get("page_num", type=int, default=1)
-
+    order_at = request.args.get("order_at", type=str, default="no search")
+    print('------------------------------------------------',order_at)
     # result
     result = []
-    result = order_service.read_all()
+    if order_at == 'no search' :
+        result = order_service.read_all()
+    elif (len(order_at) != 0) :
+        result = order_service.read_order_date(order_at)
 
     total_page, page_list, page_datas = get_page_info(page_num, 10, 3, result) # 현재 페이지 번호, 노출 게시물 개수, 노출 페이지 간격, 게시물 데이터
 
-    response = render_template("order/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num)
+    response = render_template("order/board/list.html", datas=result, total_page = total_page, page_list=page_list, page_datas=page_datas, page_num=page_num, order_at = order_at)
     return response
 
 
