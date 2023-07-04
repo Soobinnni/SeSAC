@@ -54,3 +54,5 @@ class StoreService():
 
         #db
         self.store_db.create(store_list)
+
+        return uuid

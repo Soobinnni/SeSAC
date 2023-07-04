@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, render_template, request
+from flask import Blueprint, Flask, render_template, request, redirect, url_for
 
 from view.paging_view import get_page_info
 from service.item_service import ItemService
@@ -15,13 +15,14 @@ def item_board_list():
     page_num = request.args.get("page_num", type=int, default=1)
     name = request.args.get("name", type=str, default="no search")
     unit_price = request.args.get("unit_price", type=int, default=-1)
-
     # result
     result = []
     if (name == 'no search') and (unit_price == -1):
         result = item_service.read_all()
     elif (len(name) !=0) and ( unit_price == -1) :
         result = item_service.read_name(name)
+    elif (len(name) ==0) and ( unit_price != -1) :
+        result = item_service.read_price(unit_price)
     elif (len(name) !=0) and ( unit_price != -1) :
         result = item_service.read_name_price(name, unit_price)
 
@@ -37,11 +38,13 @@ def item_board_detail():
     print('----------------------------view-item : @item_bp.route("/item/board/detail")')
     # parameter value
     id = request.args.get("id", type=str)
+    regist_status = request.args.get("regist_status", type=bool, default=False)
+
     #service호출
     data = item_service.read_id(id)
 
     #응답
-    response = render_template("item/board/detail.html", data = data)
+    response = render_template("item/board/detail.html", data = data, regist_status = regist_status)
     return response
 
 # --------------------------------------------------------register-----------------------------------------------------------------
@@ -69,10 +72,13 @@ def item_register():
         # item domain init
         item = Item(name, type_, unit_price)
 
-        # item create service
-        item_service.create(item)
+        # item create service, uuid get
+        item_id = item_service.create(item)
+        
+        # 등록 여부
+        regist_status = True
 
         #응답
-        response = render_template("item/register.html")
+        response = redirect(url_for('item.item_board_detail', id = item_id, regist_status = regist_status))
 
     return response

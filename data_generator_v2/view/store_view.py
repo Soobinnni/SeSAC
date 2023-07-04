@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, render_template, request
+from flask import Blueprint, Flask, render_template, request, redirect, url_for
 
 from view.paging_view import get_page_info
 from service.store_service import StoreService
@@ -39,11 +39,12 @@ def store_board_detail():
     print('----------------------------view-store : @store_bp.route("/store/board/detail")')
     # parameter value
     id = request.args.get("id", type=str)
+    regist_status = request.args.get("regist_status", type=bool, default=False)
     #service호출
     data = store_service.read_id(id)
 
     #응답
-    response = render_template("store/board/detail.html", data = data)
+    response = render_template("store/board/detail.html", data = data, regist_status = regist_status)
     return response
 
 # --------------------------------------------------------register-----------------------------------------------------------------
@@ -72,10 +73,13 @@ def store_register():
         # store domain init
         store = Store(name, type_, address)
 
-        # store create service
-        store_service.create(store)
+        # store create service, uuid get
+        store_id = store_service.create(store)
+
+        # 등록 여부
+        regist_status = True
 
         #응답
-        response = render_template("store/register.html")
+        response = redirect(url_for('store.store_board_detail', id = store_id, regist_status = regist_status))
 
     return response
