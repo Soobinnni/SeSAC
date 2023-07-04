@@ -177,8 +177,10 @@
                                 <td><label for="gender">Gender </label></td>
                                 <td>
                                     <select name="gender" id="gender">
-                                        <option value="Female">female</option>
-                                        <option value="Male">male</option>
+                                    {% set type_dic = { 'Female' : 'female', 'Male' : 'male' } %}
+                                    {% for key, value in type_dic.items() %}
+                                       <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                     </select>
                                 </td>
                             </tr>

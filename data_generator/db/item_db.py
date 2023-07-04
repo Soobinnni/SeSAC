@@ -63,3 +63,14 @@ class ItemDB :
                 result.append(data)
         
         return result
+    # -----------------------------------------CREATE-----------------------------------------------------
+    def add_item_db(self, data):
+        #create data to csv file
+        with open("db/csv/item.csv",'a',encoding='utf-8', newline='') as file:
+            csv_writer=csv.writer(file)
+            csv_writer.writerow(data)
+
+    def create(self, item_list) :
+        #log
+        print('----------------------------db-item : create()')
+        self.add_item_db(item_list)

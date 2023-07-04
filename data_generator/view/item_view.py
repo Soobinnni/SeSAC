@@ -2,6 +2,7 @@ from flask import Blueprint, Flask, render_template, request
 
 from view.paging_view import get_page_info
 from service.item_service import ItemService
+from domain.item import Item
 
 item_bp = Blueprint('item', __name__, url_prefix='/item')
 item_service = ItemService()
@@ -41,4 +42,37 @@ def item_board_detail():
 
     #응답
     response = render_template("item/board/detail.html", data = data)
+    return response
+
+# --------------------------------------------------------register-----------------------------------------------------------------
+@item_bp.route("/register", methods = ['GET', 'POST'])
+def item_register():
+    response = None
+    if request.method == 'GET' :
+        #log
+        print('----------------------------view-item : @item_bp.route("/register", methods = ["GET"])')
+        #응답
+        response = render_template("item/register.html")
+
+    elif request.method == 'POST' :
+        #log
+        print('----------------------------view-item : @item_bp.route("/register", methods = ["POST"])')
+        
+        # form value
+        name =  request.form['name']
+        type_ =  request.form['type']
+        unit_price =  request.form['unit_price']
+
+        # mk name ex: Americano Coffee
+        name = name + " " +type_
+
+        # item domain init
+        item = Item(name, type_, unit_price)
+
+        # item create service
+        item_service.create(item)
+
+        #응답
+        response = render_template("item/register.html")
+
     return response

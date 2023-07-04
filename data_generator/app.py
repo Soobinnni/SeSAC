@@ -20,4 +20,5 @@ app.register_blueprint(order_item_bp)
 app.register_blueprint(store_bp)
 # ---------------------------------------------------------Main-----------------------------------------------------------
 if __name__ == "__main__":
-    app.run(debug=True, port=5003)
+    app.run(port=5003, host = "0.0.0.0")
+    # app.run(debug=True, port=5003, host = "0.0.0.0")

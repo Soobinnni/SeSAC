@@ -105,7 +105,7 @@
             <div class="border"> </div>
             <main id = "main">
                 <table class="home_menu_list">
-                    {% set menu_list = {'목록보기' : '/user/board/list', '주문하기' : '/', '사용자 등록하기' : '/user/register', '가게 등록하기' : '/store/register', '상품 등록하기' : '/'} %}
+                    {% set menu_list = {'목록보기' : '/user/board/list', '주문하기' : '/', '사용자 등록하기' : '/user/register', '가게 등록하기' : '/store/register', '상품 등록하기' : '/item/register'} %}
                     {% for menu, url in menu_list.items() %}
                     <tr onclick="window.location.href = '{{url}}'">
                         <td class = "menu_td" align="center">{{menu}}</td>

@@ -1,4 +1,5 @@
 from db.item_db import ItemDB
+from db.mk_uuid import mk_uuid
 
 class ItemService():
     def __init__(self):
@@ -28,3 +29,22 @@ class ItemService():
         result = self.item_db.read_id(id)[0]
         # select 1개이므로 인덱스 번호 0의 dic을 반환
         return result
+    
+    def create(self, item) :
+        #log
+        print('----------------------------service-item : create()')
+
+        #domain
+        item = item
+
+        #property
+        uuid = mk_uuid()
+        name = item.name
+        type_ = item.type_
+        unit_price = item.unit_price
+
+        #list
+        item_list = [uuid, name, type_, unit_price]
+
+        #db
+        self.item_db.create(item_list)
