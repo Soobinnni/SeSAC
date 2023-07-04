@@ -90,31 +90,31 @@
         .header span:nth-child(2n){
             color : var(--bs-orange)            
         }
-        .item_register_content {
+        .user_register_content {
             width: 50%;
             margin: 5% auto;
             padding-left : 9%;
         }
-        .item_register_content form table {
+        .user_register_content form table {
             width: 80%;
             border-collapse: collapse;
         }
-        .item_register_content form table tr {
+        .user_register_content form table tr {
             height : 45px;
         }
-        .item_register_content form table tr:not(:last-child) {
+        .user_register_content form table tr:not(:last-child) {
             border-bottom : 1px solid var(--bs-gray-200);
         }
-        .item_register_content form table tr td:first-child {
+        .user_register_content form table tr td:first-child {
             width: 40%;
             font-size: 1.2em;
             font-weight: 700;
             color: var(--bs-gray-800);
         }
-        .item_register_content form table tr td:nth-child(2) {
+        .user_register_content form table tr td:nth-child(2) {
             width: 60%;
         }
-        .item_register_content form table tr td input, .item_register_content form table tr td select {
+        .user_register_content form table tr td input, .user_register_content form table tr td select {
             color : var(--bs-gray-600);
             border: 1px solid rgba(136, 134, 134, 0.2);
             border-radius : 10px;
@@ -124,14 +124,14 @@
             text-align: center;
             font-style: oblique;
         }
-        .item_register_btn {
+        .user_register_btn {
             width: 60%;
             margin : 6% auto;
             display: flex;
             justify-content: flex-end;
             gap : 5%;
         }
-        .item_register_btn input, .item_register_btn button {
+        .user_register_btn input, .user_register_btn button {
             border-style: none;
             width: 35%;
             height: 30px;
@@ -142,7 +142,7 @@
             font-weight: 700;
             font-size: 40%;
         }
-        .item_register_btn input:hover, .item_register_btn button:hover {
+        .user_register_btn input:hover, .user_register_btn button:hover {
             background-color: var(--bs-orange);
             color : var(--bs-dark)
         }
@@ -151,8 +151,8 @@
     <body>
         <div id="root">
             <div class="header">
-                <a href="{{url_for('item.item_register')}}">
-                    {% set header_str = "Item Register" %}
+                <a href="{{url_for('user.user_register')}}">
+                    {% set header_str = "User Register" %}
                     {% for str in header_str %}
                     {% if str == ' ' %}
                     <span>&nbsp;</span>
@@ -164,33 +164,37 @@
             </div>
             <div class="border"> </div>
             <main id = "main">
-                <div class="item_register_content">
-                   <form action="{{ url_for('item.item_register') }}" method="post">
+                <div class="user_register_content">
+                   <form action="{{ url_for('user.user_register') }}" method="post">
                         <table>
-                            <!--Type-->
+                            <!--name-->
                             <tr>
-                                <td><label for="type">Type </label></td>
+                                <td><label for="name">Name </label></td>
+                                <td><input type = "text" name = "name" placeholder="이름을 입력하세요." id = "name"></td>
+                            </tr>
+                            <!--gender-->
+                            <tr>
+                                <td><label for="gender">Gender </label></td>
                                 <td>
-                                    <select name="type" id="type">
-                                    {% set type_dic = {'Cake' : 'cake', 'Coffee' : 'coffee', 'Juice' : 'juice'} %}
+                                    <select name="gender" id="gender">
+                                    {% set type_dic = { 'Female' : 'female', 'Male' : 'male' } %}
                                     {% for key, value in type_dic.items() %}
-                                        <option value="{{key}}">{{value}}</option>
+                                       <option value="{{key}}">{{value}}</option>
                                     {% endfor %}
                                     </select>
                                 </td>
                             </tr>
-                            <!--Name-->
                             <tr>
-                                <td><label for="name">Name </label></td>
-                                <td><input type = "text" name = "name" placeholder="상품명을 입력하세요." id = "name"></td>
+                                <td><label for="birthdate">Birthdate </label></td>
+                                <td><input type = "date" name = "birthdate" id = "birthdate" value="1998-06-17"></td>
                             </tr>
-                            <!--UnitPrice-->
+                            <!--address-->
                             <tr>
-                                <td><label for="unit_price">UnitPrice </label></td>
-                                <td><input type = "text" name = "unit_price" placeholder="가격을 입력하세요" id = "unit_price"></td>
+                                <td><label for="address">Address </label></td>
+                                <td><input type = "text" name = "address" placeholder="주소를 입력하세요" id = "address"></td>
                             </tr>
                         </table>
-                        <div class="item_register_btn">
+                        <div class="user_register_btn">
                             <input type="submit" value="등록하기"></td>
                             <button type="button" onclick = "window.location.href = '/'">취소하기</button>
                         </div>

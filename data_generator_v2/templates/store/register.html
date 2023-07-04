@@ -90,31 +90,31 @@
         .header span:nth-child(2n){
             color : var(--bs-orange)            
         }
-        .item_register_content {
+        .store_register_content {
             width: 50%;
             margin: 5% auto;
             padding-left : 9%;
         }
-        .item_register_content form table {
+        .store_register_content form table {
             width: 80%;
             border-collapse: collapse;
         }
-        .item_register_content form table tr {
+        .store_register_content form table tr {
             height : 45px;
         }
-        .item_register_content form table tr:not(:last-child) {
+        .store_register_content form table tr:not(:last-child) {
             border-bottom : 1px solid var(--bs-gray-200);
         }
-        .item_register_content form table tr td:first-child {
+        .store_register_content form table tr td:first-child {
             width: 40%;
             font-size: 1.2em;
             font-weight: 700;
             color: var(--bs-gray-800);
         }
-        .item_register_content form table tr td:nth-child(2) {
+        .store_register_content form table tr td:nth-child(2) {
             width: 60%;
         }
-        .item_register_content form table tr td input, .item_register_content form table tr td select {
+        .store_register_content form table tr td input, .store_register_content form table tr td select {
             color : var(--bs-gray-600);
             border: 1px solid rgba(136, 134, 134, 0.2);
             border-radius : 10px;
@@ -124,14 +124,14 @@
             text-align: center;
             font-style: oblique;
         }
-        .item_register_btn {
+        .store_register_btn {
             width: 60%;
             margin : 6% auto;
             display: flex;
             justify-content: flex-end;
             gap : 5%;
         }
-        .item_register_btn input, .item_register_btn button {
+        .store_register_btn input, .store_register_btn button {
             border-style: none;
             width: 35%;
             height: 30px;
@@ -142,7 +142,7 @@
             font-weight: 700;
             font-size: 40%;
         }
-        .item_register_btn input:hover, .item_register_btn button:hover {
+        .store_register_btn input:hover, .store_register_btn button:hover {
             background-color: var(--bs-orange);
             color : var(--bs-dark)
         }
@@ -151,8 +151,8 @@
     <body>
         <div id="root">
             <div class="header">
-                <a href="{{url_for('item.item_register')}}">
-                    {% set header_str = "Item Register" %}
+                <a href="{{url_for('store.store_register')}}">
+                    {% set header_str = "Store Register" %}
                     {% for str in header_str %}
                     {% if str == ' ' %}
                     <span>&nbsp;</span>
@@ -164,33 +164,38 @@
             </div>
             <div class="border"> </div>
             <main id = "main">
-                <div class="item_register_content">
-                   <form action="{{ url_for('item.item_register') }}" method="post">
+                <div class="store_register_content">
+                   <form action="{{ url_for('store.store_register') }}" method="post">
                         <table>
                             <!--Type-->
                             <tr>
                                 <td><label for="type">Type </label></td>
                                 <td>
                                     <select name="type" id="type">
-                                    {% set type_dic = {'Cake' : 'cake', 'Coffee' : 'coffee', 'Juice' : 'juice'} %}
-                                    {% for key, value in type_dic.items() %}
-                                        <option value="{{key}}">{{value}}</option>
-                                    {% endfor %}
+                                        {% set type_list = [ '투썸', '스타벅스', '이디야', '커피빈' ] %}
+                                        {% for type in type_list %}
+                                        <option value="{{type}}">{{type}}</option>
+                                        {% endfor %}
                                     </select>
                                 </td>
                             </tr>
-                            <!--Name-->
+                            <!--Local-->
                             <tr>
-                                <td><label for="name">Name </label></td>
-                                <td><input type = "text" name = "name" placeholder="상품명을 입력하세요." id = "name"></td>
+                                <td><label for="local">Local </label></td>
+                                <td><input type = "text" name = "local" id = "local" placeholder=" (ex) 홍대"/></td>
                             </tr>
-                            <!--UnitPrice-->
+                            <!--store num-->
                             <tr>
-                                <td><label for="unit_price">UnitPrice </label></td>
-                                <td><input type = "text" name = "unit_price" placeholder="가격을 입력하세요" id = "unit_price"></td>
+                                <td><label for="store_num">Store Number </label></td>
+                                <td><input style="width : 70%" type = "text" name = "store_num" id = "store_num" placeholder="(ex) 2" /><span style="display:inline-block;float: right;">호점</span></td>
+                            </tr>
+                            <!--address-->
+                            <tr>
+                                <td><label for="address">Address </label></td>
+                                <td><input type = "text" name = "address" placeholder="(ex) 서울시 강동구" id = "address"></td>
                             </tr>
                         </table>
-                        <div class="item_register_btn">
+                        <div class="store_register_btn">
                             <input type="submit" value="등록하기"></td>
                             <button type="button" onclick = "window.location.href = '/'">취소하기</button>
                         </div>

@@ -51,3 +51,6 @@ class UserService():
 
         #db
         self.user_db.create(user_list)
+
+        #return으로 id값을 줌 -> view에서 user/detail페이지의 인자로 넘길 수 있게.
+        return uuid

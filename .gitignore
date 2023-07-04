@@ -173,3 +173,5 @@ pyrightconfig.json
 #etc
 data_generator/test.py
 data_generator/todo.txt
+data_generator_v2/test.py
+data_generator_v2/todo.txt
