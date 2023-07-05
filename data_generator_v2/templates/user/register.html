@@ -193,6 +193,12 @@
                                 <td><label for="address">Address </label></td>
                                 <td><input type = "text" name = "address" placeholder="주소를 입력하세요" id = "address"></td>
                             </tr>
+                            <!-- 유효성 -->
+                            {% if is_empty %}
+                            <tr>
+                                <td colspan="2" style="font-size: 1em; color: var(--bs-warning);font-style: oblique;padding:10px;">모든 데이터가 입력되지 않았습니다.</td>
+                            </tr>
+                            {% endif %}
                         </table>
                         <div class="user_register_btn">
                             <input type="submit" value="등록하기"></td>

@@ -66,17 +66,28 @@ def user_register():
         birthdate =  request.form['birthdate']
         address =  request.form['address']
 
-        # user domain init
-        user = User(name, gender, birthdate, address)
+        # 유효성 검사
+        is_empty = False
+        is_empty_list = [(len(name.strip()) == 0), (len(address.strip()) == 0)]
 
-        # user create service, uuid get
-        user_id = user_service.create(user)
+        for form_data in is_empty_list : 
+            if form_data :
+                is_empty = True
 
-        # 등록 여부
-        regist_status = True
+        if is_empty :
+            response = render_template("user/register.html", is_empty = is_empty)
+        else : 
+            # user domain init
+            user = User(name, gender, birthdate, address)
 
-        #응답
-        response = redirect(url_for('user.user_board_detail', id = user_id, regist_status = regist_status))
+            # user create service, uuid get
+            user_id = user_service.create(user)
+
+            # 등록 여부
+            regist_status = True
+
+            #응답
+            response = redirect(url_for('user.user_board_detail', id = user_id, regist_status = regist_status))
 
     return response
 
