@@ -62,23 +62,47 @@ def item_register():
         print('----------------------------view-item : @item_bp.route("/register", methods = ["POST"])')
         
         # form value
-        name =  request.form['name']
+        name =  request.form['name'].strip()
         type_ =  request.form['type']
-        unit_price =  request.form['unit_price']
+        unit_price =  request.form['unit_price'].strip()
 
-        # mk name ex: Americano Coffee
-        name = name + " " +type_
+        # 유효성 검사
+        is_empty = False
+        type_positive_match = False
 
-        # item domain init
-        item = Item(name, type_, unit_price)
+        # 정상적인 숫자값이 들어왔는지 검사
+        try :
+            if int(unit_price) <= 0 :
+                type_positive_match = True
+                #log
+                print('---------------------------type_positive_match : 음수값이 데이터로 들어옴')
+        except ValueError : 
+                type_positive_match = True
+                #log
+                print('----------------------------type_positive_match : 문자열 또는 실수 데이터가 들어옴')
 
-        # item create service, uuid get
-        item_id = item_service.create(item)
-        
-        # 등록 여부
-        regist_status = True
+        is_empty_list = [(len(name) == 0), (len(type_) == 0), (len(unit_price) == 0), type_positive_match]
 
-        #응답
-        response = redirect(url_for('item.item_board_detail', id = item_id, regist_status = regist_status))
+        for form_data in is_empty_list : 
+            if form_data :
+                is_empty = True
+
+        if is_empty :
+            response = render_template("item/register.html", is_empty = is_empty)
+        else : 
+            # mk name ex: Americano Coffee
+            name = name + " " +type_
+
+            # item domain init
+            item = Item(name, type_, unit_price)
+
+            # item create service, uuid get
+            item_id = item_service.create(item)
+            
+            # 등록 여부
+            regist_status = True
+
+            #응답
+            response = redirect(url_for('item.item_board_detail', id = item_id, regist_status = regist_status))
 
     return response

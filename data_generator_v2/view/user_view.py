@@ -61,14 +61,14 @@ def user_register():
         print('----------------------------view-user : @user_bp.route("/register", methods = ["POST"])')
         
         # form value
-        name = request.form['name']
+        name = request.form['name'].strip()
         gender =  request.form['gender']
         birthdate =  request.form['birthdate']
-        address =  request.form['address']
+        address =  request.form['address'].strip()
 
         # 유효성 검사
         is_empty = False
-        is_empty_list = [(len(name.strip()) == 0), (len(address.strip()) == 0)]
+        is_empty_list = [(len(name) == 0), (len(address) == 0)]
 
         for form_data in is_empty_list : 
             if form_data :

@@ -189,6 +189,12 @@
                                 <td><label for="unit_price">UnitPrice </label></td>
                                 <td><input type = "text" name = "unit_price" placeholder="가격을 입력하세요" id = "unit_price"></td>
                             </tr>
+                            <!-- 유효성 -->
+                            {% if is_empty %}
+                            <tr>
+                                <td colspan="2" style="font-size: 1em; color: var(--bs-warning);font-style: oblique;padding:10px;">데이터가 모두 입력되지 않았거나 올바르게 입력되지 않았습니다.</td>
+                            </tr>
+                            {% endif %}
                         </table>
                         <div class="item_register_btn">
                             <input type="submit" value="등록하기"></td>

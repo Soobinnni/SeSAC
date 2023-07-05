@@ -63,23 +63,47 @@ def store_register():
         
         # form value
         type_ =  request.form['type']
-        local =  request.form['local']
-        store_num =  request.form['store_num']
-        address =  request.form['address']
+        local =  request.form['local'].strip()
+        store_num =  request.form['store_num'].strip()
+        address =  request.form['address'].strip()
 
-        # mk name ex: 스타벅스 홍대8호점
-        name = type_ + " " + local + str(store_num)+"호점"
+        # 유효성 검사
+        is_empty = False
+        type_positive_match = False
 
-        # store domain init
-        store = Store(name, type_, address)
+        # 정상적인 숫자값이 들어왔는지 검사
+        try :
+            if int(store_num) <= 0 :
+                type_positive_match = True
+                #log
+                print('---------------------------type_positive_match : 음수값이 데이터로 들어옴')
+        except ValueError : 
+                type_positive_match = True
+                #log
+                print('----------------------------type_positive_match : 문자열 또는 실수 데이터가 들어옴')
 
-        # store create service, uuid get
-        store_id = store_service.create(store)
+        is_empty_list = [(len(local) == 0), (len(address) == 0), (len(store_num) == 0), type_positive_match]
 
-        # 등록 여부
-        regist_status = True
+        for form_data in is_empty_list : 
+            if form_data :
+                is_empty = True
 
-        #응답
-        response = redirect(url_for('store.store_board_detail', id = store_id, regist_status = regist_status))
+        if is_empty :
+            response = render_template("store/register.html", is_empty = is_empty)
+        else : 
+            # mk name ex: 스타벅스 홍대8호점
+            name = type_ + " " + local + str(store_num)+"호점"
+
+            # store domain init
+            store = Store(name, type_, address)
+
+            # store create service, uuid get
+            store_id = store_service.create(store)
+
+            # 등록 여부
+            regist_status = True
+
+            #응답
+            response = redirect(url_for('store.store_board_detail', id = store_id, regist_status = regist_status))
 
     return response
