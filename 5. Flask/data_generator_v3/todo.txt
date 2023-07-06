@@ -1,0 +1,54 @@
+  <TODO> 
+- 각자 검색 필터 기능 생각 (완)
+- user, store, item 유기적인 관계를 생각해서 등록시켜보기(db-create) (User, Store 완)
+- 검색 하이라이트
+- read도 domain에 담아서 검색하기
+- uuid 생성 db에서 하기
+- 예외 처리하기 및 유효성 검사하기
+
+--------------------------------------------------------------------------------------------------------
+  <TIL>
+- jinja2문법은 len()함수가 적용되지 않음
+    해결책 : x | length
+            -> x의 길이를 알 수 있음
+
+- jinja2 주석
+    {# 내용 #}
+
+- n~m의 int데이터를 list로 저장하기
+    list(range(n, (m+1)))
+
+- list의 내용을 일정 간격만큼 잘라서 리스트의 리스트요소로 저장하기
+    [ 리스트[ i : ( i + 간격 ) for i in range( 0, len(리스트), 간격 ) ]]
+
+- csv 파일에 쓰기
+  예1) read를 쓰기
+  str = ['read']
+  with open("test.csv",'a',encoding='utf-8', newline='') as file:
+          csv_writer=csv.writer(file)
+          csv_writer.writerow(str)
+  예2) Nikhil,COE,2,9.0 쓰기
+  datas = [ 'Nikhil', 'COE', '2', '9.0']
+  with open("test.csv",'a',encoding='utf-8', newline='') as file:
+          csv_writer=csv.writer(file)
+          csv_writer.writerow(datas)
+
+
+- list 중복 요소 제거하기
+arr = [6, 5, 6, 4, 4, 1, 1, 2, 3, 9, 8, 7, 9, 8, 7]
+
+1. set 이용한 리스트 중복 제거
+  set(arr)
+
+2. for 반복문을 이용한 리스트 중복 제거
+  result = [] # 중복 제거된 값들이 들어갈 리스트
+  for value in arr:
+    if value not in result:
+        result.append(value)
+
+3. dictionary를 이용한 리스트 중복 제거
+  result1 = dict.fromkeys(arr) # 리스트 값들을 key 로 변경
+  print(result1)
+
+  result2 = list(result1) # list(dict.fromkeys(arr))
+  print(result2)
