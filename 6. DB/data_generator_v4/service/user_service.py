@@ -1,15 +1,16 @@
-from db.user_db import UserDB
+from db.db_utils.user_execute_SQL import UserExecuteSQL
 from domain.user import User
 from service.mk_uuid import mk_uuid
 
 class UserService():
     def __init__(self):
-        self.user_db = UserDB()
+        self.user_execute_sql = UserExecuteSQL()
 
     def read_all(self):
         #log
         print('----------------------------service-user : read_all()')
-        result = self.user_db.read_all()
+        sql = "select * from user"
+        result = self.user_execute_sql.read(sql)
         return result
     
     def read_name_gender(self, name, gender):
@@ -27,6 +28,7 @@ class UserService():
     def read_id(self, id):
         #log
         print('----------------------------service-user : read_id()')
+        sql = "select * from user where id = ?"
         result = self.user_db.read_id(id)[0]
         # select 1개이므로 인덱스 번호 0의 dic을 반환
         return result
@@ -47,10 +49,12 @@ class UserService():
         address = user.address
 
         #list
-        user_list = [uuid, name, gender, age, birthdate, address]
+        user_tuple = (uuid, name, gender, age, birthdate, address)
 
         #db
-        self.user_db.create(user_list)
+        self.user_db.create(user_tuple)
 
         #return으로 id값을 줌 -> view에서 user/detail페이지의 인자로 넘길 수 있게.
         return uuid
+    
+
