@@ -63,10 +63,35 @@ def input_for_sign_up() :
     print('회원가입을 시작합니다.')
     input_user_id = input('아이디를 입력하세요.\n>>>')
     input_password =  input('비밀번호를 입력하세요.\n>>>\n')
-    hashed_password = get_hashed_password(input_password)
 
+    # 아이디 중복검사 함수
+    is_it_duplicate = check_id_duplication(input_user_id)
+    if is_it_duplicate :
+        hashed_password = get_hashed_password(input_password)
+        return (input_user_id, hashed_password)
+    else : 
+        print('중복된 아이디입니다.')
+        return None
+def input_for_login() : 
+    print('로그인을 시작합니다.')
+    input_user_id = input('아이디를 입력하세요.\n>>>')
+    input_password =  input('비밀번호를 입력하세요.\n>>>\n')
+
+    hashed_password = get_hashed_password(input_password)
     return (input_user_id, hashed_password)
-    
+
+def check_id_duplication(id_) :
+    is_it_duplicate = False
+    select_sql_st = "SELECT * FROM users WHERE user_name = ?"
+    args_select = (id_,)
+
+    result = execute_select_sql(select_sql_st, args_select)
+
+    if(len(result) ==0) :
+        is_it_duplicate = True
+
+    return is_it_duplicate
+
 def get_hashed_password(password):
     m = hashlib.sha256()
     m.update(password.encode('utf-8'))
@@ -84,19 +109,27 @@ def execute_insert_sql(update_sql_st, args) :
     c.execute(update_sql_st, args)
     conn.commit()
 
-def execute_select_sql(select_sql_st, args) :
+def execute_select_sql(select_sql_st, args = None) :
     _ , c = db_utils()
+    result = []
     result = c.execute(select_sql_st, args).fetchall()
     return result
 # ========================================실행
 # 회원가입 : 미션1. 사용자 콘솔로부터 username/password를 받아서 동작 함수 구현
-args = input_for_sign_up()
-update_sql_st = "INSERT INTO users(user_name, password) VALUES (?, ?)"
-execute_insert_sql(update_sql_st, args)
-
+# args_sign_up = input_for_sign_up()
+# if args_sign_up :
+#     update_sql_st = "INSERT INTO users(user_name, password) VALUES (?, ?)"
+#     execute_insert_sql(update_sql_st, args_sign_up)
 #결과 조회
+# select_sql_st = "SELECT * FROM users WHERE user_name = ? AND password = ?"
+# result = execute_select_sql(select_sql_st, args)
+# print(result)
+
+#로그인
+args_login = input_for_login()
 select_sql_st = "SELECT * FROM users WHERE user_name = ? AND password = ?"
-result = execute_select_sql(select_sql_st, args)
-print(result)
-
-
+result = execute_select_sql(select_sql_st, args_login) 
+if result :
+    print('로그인 성공!')
+else : 
+    print('로그인 실패!')
