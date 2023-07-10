@@ -153,10 +153,10 @@
             <main id = "main">
                 <!--board_list에서 넘어온 상세 페이지일 경우-->
                 {% if not regist_status %}
-                <h1 class="board_name">User {{data['Name']}}</h1>
+                <h1 class="board_name">User {{data['name']}}</h1>
                 {% else %}
                 {# 등록 후 상세 페이지일 경우 #}
-                <h1 class="board_name">User {{data['Name']}} 등록 완료! </h1>
+                <h1 class="board_name">User {{data['name']}} 등록 완료! </h1>
                 {% endif %}
                 <section class="main_content"> 
                     <div class="detail_content">
@@ -164,7 +164,7 @@
                             <!-- <a href="javascript:history.back()">뒤로가기</a> -->
                             <button type='button' onclick="window.history.back()" style="display: inline-block;">뒤로가기</button>
                             {% if regist_status %}
-                            <button type='button' onclick="window.location.href='{{url_for('home')}}'" style="display: inline-block;">홈으로 가기</button>
+                            <button type='button' onclick="window.location.href='{{url_for('common.home')}}'" style="display: inline-block;">홈으로 가기</button>
                             {% endif %}
                         </div>
                         <table>

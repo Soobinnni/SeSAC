@@ -17,7 +17,7 @@ class UserService(ExecuteSQLService):
         user_tuple = self.properties_to_tuple(user)
 
         #execute sql
-        sql = "INSERT INTO user(id, name, gender, age, birthdate, address) VALUES (?, ?, ?, ?, ?, ?)"
+        sql = "INSERT INTO user(id, name, gender, birthdate, age, address) VALUES (?, ?, ?, ?, ?, ?)"
         args = user_tuple
         self.execute_sql(DML.INSERT, sql, args)
 
@@ -40,14 +40,13 @@ class UserService(ExecuteSQLService):
         
         #execute sql
         result = None
-        sql = "SELECT * FROM user WHERE name = ?"
+        sql = f"SELECT * FROM user WHERE name LIKE '%{name}%' "
         if(gender != 'Both') :
             sql += "AND gender = ?"
-            args = (name, gender)
+            args = (gender,)
+            result = self.execute_sql(DML.SELECT, sql, args)
         else :
-            args = (name,)
-        
-        result = self.execute_sql(DML.SELECT, sql, args)
+            result = self.execute_sql(DML.SELECT, sql)    
         
         return result
     

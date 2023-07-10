@@ -13,8 +13,8 @@ def store_board_list():
     print('----------------------------view-store : @store_bp.route("/store/board/list")')
     # parameter values
     page_num = request.args.get("page_num", type=int, default=1)
-    name = request.args.get("name", type=str, default="no search")
-    address = request.args.get("address", type=str, default="no search")
+    name = request.args.get("name", type=str, default="no search").strip()
+    address = request.args.get("address", type=str, default="no search").strip()
     
     # result
     result = []

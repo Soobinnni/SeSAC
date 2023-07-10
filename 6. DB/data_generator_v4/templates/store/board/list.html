@@ -206,16 +206,16 @@
                                 {% set header = page_datas[0].keys() %}
                                 <tr>
                                     {% for value in header %}
-                                    {% if value != 'Id' %}
+                                    {% if value != 'id' %}
                                         <th>{{value}}</th>
                                     {% endif %}
                                     {% endfor %}
                                 </tr>
                                     {% for page_data in page_datas %}
-                                    {% set id = page_data['Id'] %}
+                                    {% set id = page_data['id'] %}
                                     <tr onclick = window.location.href="{{ url_for('store.store_board_detail', id=id) }}">
                                         {% for key, value in page_data.items() %}
-                                            {% if key != "Id" %}
+                                            {% if key != "id" %}
                                                 <td>{{value}}</td>
                                             {% endif %}
                                         {% endfor %}

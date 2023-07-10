@@ -224,7 +224,7 @@
                                     {% endfor %}
                                 </tr>
                                     {% for page_data in page_datas %}
-                                    {% set id = page_data['Id'] %}
+                                    {% set id = page_data['id'] %}
                                     <tr onclick = window.location.href="{{ url_for('order_item.order_item_board_detail', id=id) }}">
                                         {% for key, value in page_data.items() %}
                                         <td>{{value}}</td>

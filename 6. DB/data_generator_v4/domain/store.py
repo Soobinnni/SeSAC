@@ -1,5 +1,6 @@
 class Store() :
     def __init__(self, name, type_, address) :
+        self.id = ""
         self.name = name
         self.type_ = type_
         self.address = address
