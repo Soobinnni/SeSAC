@@ -1,10 +1,10 @@
 from flask import Blueprint, Flask, render_template, request
 
-from view.paging_view import get_page_info
-from service.order_item_service import OrderItemService
+from view.paging import get_page_info
+from service.execute_sql_service.order_item_execute_sql_service import OrderItemExecuteSQLService
 
 order_item_bp = Blueprint('order_item', __name__, url_prefix='/order-item')
-order_item_service = OrderItemService()
+order_item_service = OrderItemExecuteSQLService()
 
 @order_item_bp.route("/board/list")
 def order_item_board_list():

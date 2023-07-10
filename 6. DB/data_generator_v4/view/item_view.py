@@ -1,11 +1,11 @@
 from flask import Blueprint, Flask, render_template, request, redirect, url_for
 
-from view.paging_view import get_page_info
-from service.item_service import ItemService
+from view.paging import get_page_info
+from service.execute_sql_service.item_execute_sql_service import ItemExecuteSQLService
 from domain.item import Item
 
 item_bp = Blueprint('item', __name__, url_prefix='/item')
-item_service = ItemService()
+item_service = ItemExecuteSQLService()
 
 @item_bp.route("/board/list")
 def item_board_list():

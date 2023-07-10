@@ -72,6 +72,7 @@ def input_for_sign_up() :
     else : 
         print('중복된 아이디입니다.')
         return None
+
 def input_for_login() : 
     print('로그인을 시작합니다.')
     input_user_id = input('아이디를 입력하세요.\n>>>')

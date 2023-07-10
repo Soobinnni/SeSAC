@@ -1,6 +1,7 @@
 from datetime import datetime
 class User() :
     def __init__(self, name, gender, birthdate, address) :
+        self.id = ""
         self.name = name
         self.gender = gender
         self.birthdate = birthdate
@@ -11,6 +12,14 @@ class User() :
     # 그리고 setter를 만들기 위해 @변수.setter를 사용한다. 
     # 마찬가지로 변수명과 동일한 함수명을 사용하는 관례가 있다.
 
+    @property
+    def id(self):
+        return self.__id
+
+    @id.setter
+    def id(self, id):
+        self.__id = id
+        
     @property
     def name(self):
         return self.__name

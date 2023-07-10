@@ -41,8 +41,8 @@ def mk_store_info():
     Printer().print_output(store_info_list, file_name)
 
 def main():
-    # mk_user_info()
-    mk_store_info()
+    mk_user_info()
+    # mk_store_info()
 
 if __name__ == "__main__":
     main()
