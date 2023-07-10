@@ -1,5 +1,5 @@
-from service.mk_uuid_service import mk_uuid
-from service.execute_sql_service.execute_sql_service import ExecuteSQLService
+from service.mk_uuid import mk_uuid
+from service.execute_sql_service.execute_sql_service import ExecuteSQLService, DML
 
 import sqlite3
 
@@ -19,7 +19,7 @@ class UserService(ExecuteSQLService):
         #execute sql
         sql = "INSERT INTO user(id, name, gender, age, birthdate, address) VALUES (?, ?, ?, ?, ?, ?)"
         args = user_tuple
-        self.execute_insert(sql, args)
+        self.execute_sql(DML.INSERT, sql, args)
 
         #return
         return id
@@ -31,7 +31,7 @@ class UserService(ExecuteSQLService):
         
         #execute sql
         sql = "SELECT * FROM user"
-        result = self.execute_select(sql)
+        result = self.execute_sql(DML.SELECT, sql)
         return result
     
     def read_name_gender(self, name, gender):
@@ -47,7 +47,7 @@ class UserService(ExecuteSQLService):
         else :
             args = (name,)
         
-        result = self.execute_select(sql, args)
+        result = self.execute_sql(DML.SELECT, sql, args)
         
         return result
     
@@ -58,7 +58,7 @@ class UserService(ExecuteSQLService):
         #execute sql
         sql = "SELECT * FROM user WHERE id = ?"
         args = (id,)
-        result = self.execute_select_one(sql, args)
+        result = self.execute_sql(DML.SELECTONE, sql, args)
         return result
     
 # =========================================================etc-=========================================================

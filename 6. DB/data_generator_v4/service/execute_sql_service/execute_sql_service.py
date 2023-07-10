@@ -1,51 +1,39 @@
 import sqlite3
+from enum import Enum
 
+class DML(Enum):
+    SELECT = "SELECT"
+    SELECTONE = "SELECTONE"
+    INSERT = "INSERT"
+    UPDATE = "UPDATE"
+    DELETE = "DELETE"
 class ExecuteSQLService:
     def get_conn_cursor(self) :
         conn = sqlite3.connect("db/crm.db")
         cursor = conn.cursor()
 
         return conn, cursor
-
-    def execute_select(self, sql, args = None):
+    
+    def execute_sql(self, type_, sql, args = None) :
         # get conn, cursor
         conn, cursor = self.get_conn_cursor()
-        # get dic-resultset
-        result = self.fetchall_as_dict(cursor, sql, args)
-        # conncect close
-        conn.close()
+        result = None
 
-        return result
+        # dml분류
+        if (type_ == DML.SELECT) or (type_ == DML.SELECTONE) :
+            result = None
+            if type_ == DML.SELECT :
+                result = self.fetchall_as_dict(cursor, sql, args)
+            else : 
+                result = self.fetchone_as_dict(cursor, sql, args)
+            conn.close()
+            return result
+        else :
+            #execute sql
+            cursor.execute(sql, args)
+            conn.commit()
 
-    def execute_select_one(self, sql, args):
-        # get conn, cursor
-        conn, cursor = self.get_conn_cursor()
-        # get dic-resultset
-        result = self.fetchone_as_dict(cursor, sql, args)
-        # conncect close
-        conn.close()
-        return result
-
-    def execute_insert(self, sql, args) :
-        # get conn, cursor
-        conn, cursor = self.get_conn_cursor()
-        #execute insert
-        cursor.execute( sql, args )
-        conn.commit()
-        conn.close()
-
-    def execute_update(self, conn, cursor, sql, args):
-        # get conn, cursor
-        conn, cursor = self.get_conn_cursor()
-        cursor.execute( sql,  args)
-        conn.commit()
-        conn.close()
-
-    def execute_delete(self, conn, cursor, sql, args):
-        # get conn, cursor
-        conn, cursor = self.get_conn_cursor()
-        cursor.execute( sql,  args)
-        conn.commit()
+        #connect close
         conn.close()
 
     def fetchall_as_dict(self, cursor, sql, args):

@@ -1,4 +1,4 @@
-from service.mk_uuid_service import mk_uuid
+from service.mk_uuid import mk_uuid
 from service.execute_sql_service.execute_sql_service import ExecuteSQLService
 
 class StoreExecuteSQLService(ExecuteSQLService):
