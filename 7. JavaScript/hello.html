@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello World</title>
+        <script>
+            function sayHello(){
+                console.log('안녕!')
+            }
+
+            //버튼을 누를 때마다 파랑 -> 빨강 -> 파랑 -> 빨강
+            //td배경색을 바꾸기
+            var current = 0;
+            function changeCellColor(){
+                let cells = document.getElementsByTagName("td");
+                var color;
+
+                if(current == 0) {
+                    current = 1;
+                    color = "lightblue";
+                } else {
+                    current = 0;
+                    color = "red";
+                }    
+                for (var i = 0; cells.length; i++) { 
+                    cells[i].style.backgroundColor = color;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>또 헬로우 월드..</h1>
+        <button type="button" onclick="sayHello()">sayHello! console</button>
+        <br/><br/><hr><br/><br/>
+        <table border="1"> 
+            <tr>
+                <td>셀1</td>
+                <td>셀2</td>
+                <td>셀3</td>
+            </tr>
+            <tr>
+                <td>셀4</td>
+                <td>셀5</td>
+                <td>셀6</td>
+            </tr>
+            <tr>
+                <td>셀7</td>
+                <td>셀8</td>
+                <td>셀9</td>
+            </tr>
+        </table>
+        <button type="button" onclick="changeCellColor()">색상 변경 버튼</button>
+    </body>
+</html>
