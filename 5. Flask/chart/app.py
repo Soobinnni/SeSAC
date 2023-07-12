@@ -38,5 +38,10 @@ def home() :
     response = render_template("index.html", datas = datas, labels = labels, values = values)
     return response
 
+@app.route("/map") 
+def map() :
+    response = render_template("map.html")
+    return response
+
 if __name__ == "__main__" :
     app.run(debug=True)
