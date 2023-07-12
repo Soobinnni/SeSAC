@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Monthly Revenue</title>
+        <style>
+            body {
+                width : 1200px;
+                margin: 0 auto;
+            }
+            div {
+                width: 40%;
+                margin: 0 auto;
+                align-content: center;
+            }
+            h3 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>월간 매출액</h1>
+        <table border="1">
+            <tr>
+                <th>연월</th>
+                <th>월간 매출액</th>
+            </tr>
+            <!--진자 템플릿을 통해 받아온 결과를 테이블로 촤라라락-->
+            <!--hint : for 루프 사용-->
+            {% for data in datas %}
+            <tr>
+                {% for d in data %}
+                <td>{{d}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <!--다음 미션 : 그래프로 대체해야 한다.(chart.js)로 대체-->
+        <hr>
+        <h3>월간 매출액 막대 그래프</h3>
+        <div>
+            <canvas id = "monthly_revenue_chart"></canvas>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+        const monthly_revenue_chart_ctx = document.getElementById("monthly_revenue_chart");
+        
+        bar_chart();
+          
+        function bar_chart(){
+            new Chart(monthly_revenue_chart_ctx, {
+                type: "line",
+                data: {
+                labels: {{ labels | tojson }},
+                datasets: [
+                    {
+                    label: "# of Votes",
+                    data: {{ values | tojson }},
+                    borderWidth: 3,
+                    },
+                ],
+                },
+                options: {
+                scales: {
+                    y: {
+                    beginAtZero: true,
+                    },
+                },
+                },
+            });
+        }    
+        </script>
+    </body>
+</html>
