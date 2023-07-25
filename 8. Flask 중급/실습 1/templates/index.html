@@ -1,0 +1,11 @@
+<!DOCTYPE html5>
+<head>
+    <title>
+        안녕
+    </title>
+</head>
+<body>
+    <h3>Hello {{name}}</h3>
+    {% set name = '인자' %}
+    <h3><a href="{{url_for('user_name_get', name=name)}}">인자로</a></h3>
+    <img src="{{url_for('static', filename='/images/스크린샷 2023-06-27 013322.png')}}" alt="스케줄메이트"/>
