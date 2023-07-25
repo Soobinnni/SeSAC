@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}view user{% endblock %}
+{% block content%}
+    {% set count = 0 %}
+    {% set len = users | length %}
+    {% for user in users%}
+        <p>username : {{user.name}}</p>
+        <p>password : {{user.password}}</p>
+        <p>email : {{user.email}}</p>
+    {% endfor %}
+{% endblock %}

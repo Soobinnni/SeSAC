@@ -1,8 +1,5 @@
-from flask import Flask, render_template, request 
-from flask import redirect, url_for, session
-from flask import flash
+from flask import Flask, render_template, request, session, flash
 import os
-from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24) # session key가 암호화로 저장되어야 하기 때문
