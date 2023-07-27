@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}home{% endblock %}
+{% block content%}
+<div class="box">
+    <h3 style="text-align: center;"><b>
+    {% if current_user.is_authenticated %}
+        {{current_user.username}}님 안녕하세요!
+    {% else %}
+        로그인 후 이용해주세요!
+    {% endif %}
+    </b></h3>
+</div>
+{% endblock %}

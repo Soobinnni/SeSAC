@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}login{% endblock %}
+{% block content%}
+  <div>
+    <div>
+        <form action="/login" method="post">
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">USER NAME</label>
+            <input name = 'username' type="text" class="form-control" id="formGroupExampleInput" placeholder="이름 입력">
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">PASSWORD</label>
+            <input name = 'password' type="password" class="form-control" id="formGroupExampleInput2" placeholder="비밀번호 입력">
+          </div>
+          <div>
+            <input type="submit" class="btn btn-primary" value="LOGIN">
+          </div>
+        </form>
+    </div>
+  </div>
+{% endblock %}

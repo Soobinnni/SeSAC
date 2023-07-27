@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}register{% endblock %}
+{% block content%}
+<div>
+    <div>
+        <form action="{{url_for('register')}}" method="post" class="box register">
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">USER NAME</label>
+            <input name = 'username' type="text" class="form-control" id="formGroupExampleInput" placeholder="이름 입력">
+            </div>
+            <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">PASSWORD</label>
+            <input name = 'password' type="password" class="form-control" id="formGroupExampleInput2" placeholder="비밀번호 입력">
+            </div>
+            <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">EMAIL</label>
+            <input name = 'email' type="text" class="form-control" id="formGroupExampleInput2" placeholder="비밀번호 입력">
+            </div>
+            <div class="d-grid gap-2">
+            <input type="submit" class="btn btn-primary" value="회원가입">
+            </div>
+        </form>
+    </div>
+</div>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for msg in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{msg}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock %}

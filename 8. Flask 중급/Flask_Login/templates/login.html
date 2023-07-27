@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}login{% endblock %}
+{% block content%}
+<form action="{{url_for('login')}}" method="post" class="box login">
+<div class="mb-3">
+    <label for="formGroupExampleInput" class="form-label">USER NAME</label>
+    <input name = 'username' type="text" class="form-control" id="formGroupExampleInput" placeholder="이름 입력">
+    </div>
+    <div class="mb-3">
+    <label for="formGroupExampleInput2" class="form-label">PASSWORD</label>
+    <input name = 'password' type="password" class="form-control" id="formGroupExampleInput2" placeholder="비밀번호 입력">
+    </div>
+    <div class="d-grid gap-2">
+    <input type="submit" class="btn btn-primary" value="LOGIN">
+    </div>
+</form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{msg}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+{% endblock %}

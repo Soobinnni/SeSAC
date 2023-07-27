@@ -1,0 +1,11 @@
+.main_content {
+    width : 1080px;
+    margin : 0 auto;
+}
+.box {
+    width: 30%;
+    margin : 50px auto;
+}
+.users {
+    width: 50%;
+}
