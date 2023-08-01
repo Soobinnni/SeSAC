@@ -10,6 +10,7 @@ items = {
     'item2' : {'name' : '상품2', 'price' : 2000 },
     'item3' : {'name' : '상품3', 'price' : 3000 }
 }
+
 def get_item_sq_price(item_name) :
     item_sq = ""
     item_price = 0
@@ -41,7 +42,6 @@ def add_to_cart(item_name) :
     # 세션 데이터가 수정되었음을 Flask에 알림
     session.modified = True
     
-    # print(session)
     # 담은 이후 액션
     return redirect(url_for('index'))
 

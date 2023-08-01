@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_migrate import Migrate
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -28,11 +29,15 @@ app = Flask(__name__)
 # config
 app.secret_key = os.urandom(24)  # 보안을 위한 시크릿 키 설정
 app.debug = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_backup.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # db 생성
 db = SQLAlchemy(app)
+
+# DB마이그레이션 모듈로딩
+migrate = Migrate()
+migrate.init_app(app, db)
 
 # Flask-Login 초기화
 login_manager = LoginManager()
@@ -43,18 +48,20 @@ login_manager.login_view = 'login'
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column("password", db.String(80), nullable = False)
-    email = db.Column(db.String(80))
+    # password_hash = db.Column("password", db.String(80), nullable = False)
+    password = db.Column("password", db.String(80), nullable = False)
+    # email = db.Column(db.String(80))
 
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password, password)
     
-    def __init__(self, username, email) :
+    # def __init__(self, username, email) :
+    def __init__(self, username):
         self.username = username
-        self.email = email
+        # self.email = email
 
 
 # 로그인 뷰
@@ -122,13 +129,14 @@ def register():
     if request.method == "POST" :
         username = request.form['username']
         password = request.form['password']
-        email = request.form['email']
+        # email = request.form['email']
 
         existing_user = User.query.filter(User.username==username).first()
         if existing_user :
             return '이미 존재하는 회원입니다.'
 
-        create_user(username, password, email)
+        # create_user(username, password, email)
+        create_user(username, password)
         flash('회원가입이 완료되었습니다. 로그인해주세요!')
         return render_template("home.html")
     return render_template("register.html")
@@ -157,8 +165,10 @@ def load_user(user_id):
     return User.query.get(int(user_id)) #input값은 String이기 때문에 int로 변환
 
 # 사용자 생성 함수 (새로운 사용자 생성)
-def create_user(username, password, email):
-    new_user = User(username=username, email=email)
+# def create_user(username, password, email):
+def create_user(username, password):
+    # new_user = User(username=username, email=email)
+    new_user = User(username=username)
     new_user.set_password(password)
     db.session.add(new_user)
     db.session.commit()
