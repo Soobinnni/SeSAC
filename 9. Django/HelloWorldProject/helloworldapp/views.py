@@ -1,14 +1,14 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import  HttpResponse, HttpRequest
 from .models import Message
 # Create your views here.
 
 def hello_world(request):
     return HttpResponse('Hello,world')
 
-def show_massages(request:HttpResponse)-> HttpResponse :
+def show_massages(request:HttpRequest)-> HttpResponse :
     message = Message.objects.all()
     return render(request, 'message_list.html', {'messages' : message})
 

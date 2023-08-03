@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>{{ task.title }}</h2>
+    <p>설명 : {{ task.description }}</p>
+    <p>생성일 : {{ task.created_at }}</p>
+    <p>완료 여부 :
+        {% if task.completed == True %}
+            <input type="checkbox" value={{ True }} checked>
+        {% else %}
+            <input type="checkbox" value={{ False }} checked>
+        {% endif %}
+     </p>
+    <a href="{% url 'task_update' task.pk %}">수정</a>
+    <a href="{% url 'task_delete' task.pk %}">삭제</a>
+    <br><br><br><br>
+    <div>
+            <a href={% url 'task_list' %}>목록으로</a>
+    </div>
+</body>
+</html>
