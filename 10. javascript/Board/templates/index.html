@@ -27,25 +27,29 @@
     </div>
     <script>
         function valid(value) {
-            if (value.trime().length == 0) {
+            if (value.replace(" ","").length == 0) {
                 alert('공백은 입력할 수 없습니다!')
                 return false;
-            }   
+            } else {
+                return true;
+            }
         }
         function uploadPost(){
             let title = $("#input-title").val();
             let text = $("#input-text").val();
-
-            $.ajax({
-                type : "post",
-                url : "/create",
-                data : {title: title, message:text},
-                success : function(result){
-                    //ajax성공시
-                    console.log(result)
-                    window.location.reload();
-                },
-            })
+            
+            if (valid(title) && valid(text))  {
+                $.ajax({
+                    type : "post",
+                    url : "/create",
+                    data : {title: title, message:text},
+                    success : function(result){
+                        //ajax성공시
+                        console.log(result);
+                        window.location.reload();
+                    },
+                })
+            }
         }
         function deletePost(id){
             $.ajax({
@@ -81,14 +85,16 @@
         function updatePost(id){
             let title = $(`#update_${id}_title`).val();
             let message = $(`#update_${id}_message`).val();
-            $.ajax({
-                type:'post',
-                url: `/${id}/update`,
-                data : {title : title, message : message},
-                success : function(result){
-                    window.location.reload();
-                }
-            });
+            if (valid(title) && valid(message)) {
+                $.ajax({
+                    type:'post',
+                    url: `/${id}/update`,
+                    data : {title : title, message : message},
+                    success : function(result){
+                        window.location.reload();
+                    }
+                });
+            }
         }
         function makeCard(index, id, title, message) {
             let card_content = 
