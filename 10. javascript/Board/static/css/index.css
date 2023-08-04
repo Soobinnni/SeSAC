@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200&display=swap');
+
+body {
+    background-color: rgb(255, 250, 234);
+    font-family: 'Noto Serif KR', serif;
+}
+.wrap {
+    width: 1080px;
+    margin : 50px auto;
+}
+
+.input-container h1 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom : 30px;
+}
+
+.input-container {
+    width: 70%;
+    margin : 0 auto;
+    margin-bottom : 5%;
+}
+.form-group:not(:first-child) {
+    margin-bottom: 10px;
+}
+.form-group:last-child {
+    display: flex;
+}
+.form-group button {
+    align-items: end;
+}

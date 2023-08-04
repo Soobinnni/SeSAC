@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>숫자:</h1>
+    <div id="num"></div>
+    <button id="plus">증가</button>
+</body>
+<script>
+    var num = 1;
+    document.addEventListener('DOMContentLoaded', function(){
+        document.querySelector('#num').innerHTML = num;
+    })
+    id_num = document.getElementById('num');
+    document.querySelector('#plus').addEventListener('click', function (){
+        num ++;
+        document.querySelector('#num').innerHTML = num;
+    }) //<- plus라는 버튼이 눌렸을 때 (querySelector)
+</script>
+</html>
