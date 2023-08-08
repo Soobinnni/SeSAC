@@ -27,7 +27,6 @@ def mk_movie_rank_info_list() :
         movie_rank_info['post_url'] = l.select_one('.thumb_item > div.poster_movie > img').attrs['src'].strip()
         movie_rank_info['short_description'] = l.select_one('.poster_info a').text.strip()
         movie_rank_info['link'] = 'https://movie.daum.net'+(l.select_one('.poster_info a').attrs['href'].strip())
-        movie_rank_info['link'] = 'https://movie.daum.net'+(l.select_one('.poster_info a').attrs['href'].strip())
         movie_rank_info['date'] =  str(date.today())
         movie_rank_info['rating'] = float(l.select_one('span.txt_append > span:nth-child(1) > span').text.strip())
         movie_rank_info['reservation_rate'] = float(l.select_one('span.txt_append > span:nth-child(2) > span').text.strip().split("%")[0])

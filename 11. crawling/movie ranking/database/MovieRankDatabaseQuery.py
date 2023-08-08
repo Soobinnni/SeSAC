@@ -13,7 +13,7 @@ class MovieRankDatabaseQuery(Database) :
             FROM rank r
             JOIN movie m ON m.id = movie_id
             WHERE r.date = ?
+            ORDER BY ranking
         """
         result = self.execute_fetch(sql, (date,))
-
         return result

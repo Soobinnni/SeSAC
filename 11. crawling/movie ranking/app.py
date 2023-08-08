@@ -1,22 +1,28 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from apscheduler.schedulers.background import BackgroundScheduler 
 import time
+from datetime import date
 
 from database.MovieRankDatabaseQuery import MovieRankDatabaseQuery
 from database.store_movie_rank_data import restore_rank_values
 
 app = Flask(__name__)
 db = MovieRankDatabaseQuery()
-root = '/movie/ranking'
+movie_rank_root = '/movie/ranking'
 
 #-----
 # route functions
-@app.route(root)
+@app.route('/')
+def home() :
+    date_ = str(date.today())
+    return redirect(url_for('movie_ranking_by_date', date = date_))
+
+@app.route(movie_rank_root)
 def movie_ranking() :
     date_list = db.get_movie_dates_grouped()
     return render_template('movie_ranking.html', date_list = date_list)
 
-@app.route(root+'/<date>')
+@app.route(movie_rank_root+'/<date>')
 def movie_ranking_by_date(date):
     daily_movie_rank_info = db.get_movie_rank_info_on_date(date)
     return render_template('movie_ranking_by_date.html', daily_movie_rank_info = daily_movie_rank_info)
