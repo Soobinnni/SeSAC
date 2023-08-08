@@ -1,0 +1,3 @@
+{% for date in date_list %}
+    <a href="{{url_for('movie_ranking_by_date', date = date)}}">{{date}}</a>
+{% endfor %}

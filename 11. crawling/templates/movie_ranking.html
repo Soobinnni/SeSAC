@@ -1,0 +1,18 @@
+
+<!--(date, ranking, title, rating, reservation_rate, post_url, short_description)-->
+<table border="1">
+    <tr>
+        {% set headers = {'date' : 10, 'ranking' : 10, 'title' : 5, 'rating' : 8, 'reservation_rate' : 8, 'post_url' : 10, 'short_description' : 49}%}
+        {% set size = [10, 10, 5, 8, 8, 10, 49] %}
+        {% for key, value in headers.items() %}
+            <th style = "width:{{value}}%">{{key}}</th>
+        {% endfor %}
+    </tr>
+    {% for movie_ranking in movie_rankings %}
+        <tr>
+            {% for m in movie_ranking %}
+            <td>{{m}}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>

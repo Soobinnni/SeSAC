@@ -63,10 +63,26 @@ def get_headline_href(soup) :
 def get_headline_content(soup) :
     content_url_list = get_headline_href(soup)
 
+
     for url in content_url_list :
         soup = get_requests_html_parser(url)
+            
+        # news_content = soup.select_one('.news_end')
+        # if news_content :
+        #     start_span = news_content.find('span')
+        #     end_p = news_content.find('p', class_='source')
+
+        #     if start_span and end_p :
+        #         content = start_span.next_element
+        #         while content and content != end_p:
+        #             if isinstance(content,str) and content.strip():
+        #                 print(content.strip())
+        #             content = content.next_element
+        # print('-'*20)
         content = soup.select_one('#articleBody').text
-        print(f'content : content')
+        print(f'content : {content}')
+
+    
 
 # 미션 3. 저 헤드라인 기사의 본문을 가져오기
 
