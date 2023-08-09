@@ -25,7 +25,8 @@ def movie_ranking() :
 @app.route(movie_rank_root+'/<date>')
 def movie_ranking_by_date(date):
     daily_movie_rank_info = db.get_movie_rank_info_on_date(date)
-    return render_template('movie_ranking_by_date.html', daily_movie_rank_info = daily_movie_rank_info)
+    date_list = db.get_movie_dates_grouped()
+    return render_template('movie_ranking_by_date.html', daily_movie_rank_info = daily_movie_rank_info, date_list = date_list, date = date)
 
 #-----
 # scheduler : 1) 자동화 2) 멀티 스레드 지원으로 메인 스레드와 별개의 스레드에서 스케줄 작업 진행

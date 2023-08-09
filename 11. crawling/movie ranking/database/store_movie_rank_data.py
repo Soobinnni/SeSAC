@@ -2,7 +2,6 @@ from database.Database import Database
 from crawling.crawling_movie_ranking_data import mk_movie_rank_info_list
 
 db = Database()
-movie_rank_infos = mk_movie_rank_info_list()
         
 def check_movie_name_in_movie_table(title:tuple):
     sql = """
@@ -23,6 +22,7 @@ def check_movie_name_in_movie_table(title:tuple):
     
 # TODO: 함수명이 적절하지 않은 것 같음, 너무 많은 처리를 함
 def restore_rank_values() -> None:
+    movie_rank_infos = mk_movie_rank_info_list()
     movie_id = None
 
     for movie_rank_info in movie_rank_infos:
