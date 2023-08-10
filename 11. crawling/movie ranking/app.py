@@ -17,10 +17,10 @@ def home() :
     date_ = str(date.today())
     return redirect(url_for('movie_ranking_by_date', date = date_))
 
-@app.route(movie_rank_root)
-def movie_ranking() :
-    date_list = db.get_movie_dates_grouped()
-    return render_template('movie_ranking.html', date_list = date_list)
+# @app.route(movie_rank_root)
+# def movie_ranking() :
+#     date_list = db.get_movie_dates_grouped()
+#     return render_template('movie_ranking.html', date_list = date_list)
 
 @app.route(movie_rank_root+'/<date>')
 def movie_ranking_by_date(date):
@@ -49,7 +49,6 @@ def initialize_scheduler():
     scheduler = BackgroundScheduler(daemon=True, timezone='Asia/Seoul')
     scheduler.add_job(crawling_daily_movie_rank_info, 'cron', hour=0, minute=0) # 매 12시 스케줄 등록
     scheduler.start()
-
 
 # TODO: 크롤링 작업이 실패했거나, 재 업로드가 필요할 때 수동으로 작업할 수 있는 코드 작성하기 
 # 페이지에 비밀번호 설정하여 인증, 인가하기

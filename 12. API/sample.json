@@ -1,0 +1,57 @@
+{
+    "info": {
+        "size": {
+            "width": 450,
+            "height": 574
+        },
+        "faceCount": 1
+    },
+    "faces": [
+        {
+            "roi": {
+                "x": 184,
+                "y": 132,
+                "width": 99,
+                "height": 99
+            },
+            "landmark": {
+                "leftEye": {
+                    "x": 216,
+                    "y": 155
+                },
+                "rightEye": {
+                    "x": 260,
+                    "y": 162
+                },
+                "nose": {
+                    "x": 244,
+                    "y": 185
+                },
+                "leftMouth": {
+                    "x": 214,
+                    "y": 205
+                },
+                "rightMouth": {
+                    "x": 250,
+                    "y": 211
+                }
+            },
+            "gender": {
+                "value": "female",
+                "confidence": 0.999988
+            },
+            "age": {
+                "value": "20~24",
+                "confidence": 0.679247
+            },
+            "emotion": {
+                "value": "neutral",
+                "confidence": 1.0
+            },
+            "pose": {
+                "value": "frontal_face",
+                "confidence": 0.903233
+            }
+        }
+    ]
+}
